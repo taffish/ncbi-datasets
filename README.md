@@ -10,22 +10,30 @@ Package identity:
 - name: `ncbi-datasets`
 - command: `taf-ncbi-datasets`
 - kind: `tool`
-- version: `18.33.1-r1`
-- container image: `ghcr.io/taffish/ncbi-datasets:18.33.1-r1`
+- version: `18.34.0-r1`
+- container image: `ghcr.io/taffish/ncbi-datasets:18.34.0-r1`
 - default upstream command: `datasets`
 - companion command: `dataformat`
+- datasets runtime version: `18.34.0`
+- dataformat version output: `undefined` (upstream behavior)
 - TAFFISH app license: Apache-2.0
 - upstream license: Public Domain / United States Government Work
-- upstream release: `v18.33.1`
+- upstream release: `v18.34.0`
 
 ## What This App Packages
 
-The image installs the two official `v18.33.1` Linux release binaries:
+The image installs the two official `v18.34.0` Linux release binaries:
 
 - `datasets` queries NCBI metadata, downloads gene, genome, taxonomy, and virus
   data packages, and rehydrates dehydrated packages.
 - `dataformat` converts NCBI JSON Lines reports or package metadata into TSV or
   Excel workbooks and can inspect data package catalogs.
+
+Upstream 18.34.0 adds `all` as an accepted `--include` value for gene and
+virus genome downloads, allowing users to request all available sequence,
+report, and metadata file types in one command. It also improves the error
+messages returned for invalid or unrecognized taxonomy lookups. The actual CLI
+spelling is `--include all`; there is no separate standalone `--all` option.
 
 The release archives are selected by container architecture and verified using
 the SHA-256 digests published by GitHub. The binaries are statically linked and
@@ -39,6 +47,7 @@ This app supports:
 - metadata summaries by gene, genome, taxonomy, and virus identifiers
 - sequence, annotation, and metadata data package downloads
 - accession lists and standard upstream filters
+- all-file gene and virus genome downloads via `--include all`
 - dehydrated package creation and network rehydration
 - JSON Lines metadata conversion to selected TSV fields
 - Excel workbook output
@@ -91,6 +100,16 @@ Download an E. coli genome package:
 taf-ncbi-datasets datasets download genome accession GCF_000005845.2 \
   --include genome,gff3,protein \
   --filename ecoli.zip
+```
+
+Download every available file type for a gene or virus genome request:
+
+```sh
+taf-ncbi-datasets datasets download gene gene-id 672 \
+  --include all --filename gene-all.zip
+
+taf-ncbi-datasets datasets download virus genome taxon sars-cov-2 \
+  --include all --filename virus-all.zip
 ```
 
 Create TSV or Excel metadata from that package:
@@ -195,7 +214,7 @@ The image is native on both declared Linux architectures:
 - `linux/amd64` uses `linux-amd64.cli.package.zip`
 - `linux/arm64` uses `linux-arm64.cli.package.zip`
 
-Both are official `v18.33.1` assets. Their exact archive digests and selected
+Both are official `v18.34.0` assets. Their exact archive digests and selected
 target architecture are recorded at
 `/opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt`.
 
@@ -206,7 +225,7 @@ toolchain.
 
 ## Upstream Version Quirk
 
-`datasets --version` reports `datasets version: 18.33.1`. The official
+`datasets --version` reports `datasets version: 18.34.0`. The official
 `dataformat` binary distributed in the same release currently prints
 `undefined` for `dataformat version`; this is an upstream release behavior
 also reported by upstream users, not a TAFFISH wrapper substitution.
@@ -220,18 +239,18 @@ its version string.
 
 - upstream repository: <https://github.com/ncbi/datasets>
 - upstream release:
-  <https://github.com/ncbi/datasets/releases/tag/v18.33.1>
+  <https://github.com/ncbi/datasets/releases/tag/v18.34.0>
 - official CLI manual:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/>
 - data package reference:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-packages/>
 - API key guide:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/api/api-keys/>
-- upstream commit: `a8bc1f5599cd15c2cfb4c975cdfb151c26e2310f`
+- upstream commit: `4ede49f02f32b33ed7f073b38b91fccfadaaf01f`
 - Linux amd64 archive SHA-256:
-  `d32e0b6646e80274c07dae88eb5231c254cc6df1d96c46e9372424f7a8d64e68`
+  `80201706460d0b97e32e33b0daa62fa6cb5093d69745170efb0531b5dec40751`
 - Linux arm64 archive SHA-256:
-  `5d46da87b6206004a30e17ab35c89cf2090a655f4f117f85e69f4ef7f8e93d57`
+  `f57b26acbf9115f9d57bc9e6f3d88c86134517e7fed4202adb97dee458ba27a8`
 
 ## Testing
 
@@ -240,6 +259,7 @@ Independent offline smoke cases verify:
 - exact `datasets` version and release provenance
 - the known upstream `dataformat version` output
 - summary, download, rehydrate, TSV, and Excel help surfaces
+- the 18.34.0 gene and virus genome `--include all` help contracts
 - a real local JSON Lines to TSV conversion with exact fields and values
 - a real local JSON Lines to XLSX conversion with output signature checks
 - CA certificates and upstream license presence

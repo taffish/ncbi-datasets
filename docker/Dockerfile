@@ -1,10 +1,10 @@
 FROM debian:bookworm-slim AS builder
 
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.33.1
-ARG NCBI_DATASETS_COMMIT=a8bc1f5599cd15c2cfb4c975cdfb151c26e2310f
-ARG NCBI_DATASETS_AMD64_SHA256=d32e0b6646e80274c07dae88eb5231c254cc6df1d96c46e9372424f7a8d64e68
-ARG NCBI_DATASETS_ARM64_SHA256=5d46da87b6206004a30e17ab35c89cf2090a655f4f117f85e69f4ef7f8e93d57
+ARG NCBI_DATASETS_VERSION=18.34.0
+ARG NCBI_DATASETS_COMMIT=4ede49f02f32b33ed7f073b38b91fccfadaaf01f
+ARG NCBI_DATASETS_AMD64_SHA256=80201706460d0b97e32e33b0daa62fa6cb5093d69745170efb0531b5dec40751
+ARG NCBI_DATASETS_ARM64_SHA256=f57b26acbf9115f9d57bc9e6f3d88c86134517e7fed4202adb97dee458ba27a8
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -75,7 +75,7 @@ RUN set -eux; \
     ln -s /opt/ncbi-datasets/bin/datasets /usr/local/bin/datasets; \
     ln -s /opt/ncbi-datasets/bin/dataformat /usr/local/bin/dataformat; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh; \
-    datasets --version 2>&1 | grep -Fx "datasets version: 18.33.1" >/dev/null; \
+    datasets --version 2>&1 | grep -Fx "datasets version: 18.34.0" >/dev/null; \
     dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
     datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
     datasets summary genome accession --help 2>&1 | grep -F -- "--as-json-lines" >/dev/null; \

@@ -1,4 +1,4 @@
-ncbi-datasets 18.33.1-r1
+ncbi-datasets 18.34.0-r1
 
 Purpose:
   Query and download NCBI gene, genome, taxonomy, and virus data packages with
@@ -14,6 +14,7 @@ Common workflows:
   taf-ncbi-datasets datasets summary genome taxon "Escherichia coli"
   taf-ncbi-datasets datasets download genome accession GCF_000005845.2 \
     --include genome,gff3,protein --filename ecoli.zip
+  taf-ncbi-datasets datasets download gene gene-id 672 --include all
   taf-ncbi-datasets dataformat tsv genome --package ecoli.zip \
     --fields accession,organism-name,assminfo-name
   taf-ncbi-datasets dataformat excel genome --package ecoli.zip \
@@ -54,9 +55,8 @@ Large downloads:
 Network and API keys:
   datasets summary, download, and rehydrate use live NCBI services.
   dataformat can process existing local reports and packages offline.
-  An API key is optional. Pass it with --api-key or pass NCBI_API_KEY into the
-  container with TAFFISH_DOCKER_RUN_ARGS="-e NCBI_API_KEY" or the equivalent
-  Podman setting. Keys and downloaded data are not embedded in the image.
+  Pass a key with --api-key or forward NCBI_API_KEY using TAFFISH Docker/Podman
+  runtime arguments. Keys and downloaded data are not embedded in the image.
 
 Platform and resources:
   Native linux/amd64 and linux/arm64 images use official release binaries.
@@ -66,7 +66,9 @@ Platform and resources:
 Boundaries:
   NCBI service availability, rate limits, data licenses, and record contents
   remain external to this app.
-  The official dataformat 18.33.1 binary prints "undefined" for its version
+  Version 18.34.0 accepts --include all for gene and virus genome downloads
+  and improves errors for invalid or unrecognized taxonomy lookups.
+  The official dataformat 18.34.0 binary prints "undefined" for its version
   command. Package identity is pinned by the official archive checksums,
   datasets --version, release tag, commit, and functional dataformat tests.
   Offline smoke does not contact NCBI or validate production-scale downloads.
