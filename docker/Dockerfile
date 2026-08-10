@@ -1,10 +1,13 @@
+ARG BUILDARCH
+
 FROM debian:bookworm-slim AS builder
 
+ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.34.0
-ARG NCBI_DATASETS_COMMIT=4ede49f02f32b33ed7f073b38b91fccfadaaf01f
-ARG NCBI_DATASETS_AMD64_SHA256=80201706460d0b97e32e33b0daa62fa6cb5093d69745170efb0531b5dec40751
-ARG NCBI_DATASETS_ARM64_SHA256=f57b26acbf9115f9d57bc9e6f3d88c86134517e7fed4202adb97dee458ba27a8
+ARG NCBI_DATASETS_VERSION=18.35.0
+ARG NCBI_DATASETS_COMMIT=f637b91702b9c216dfa2c172a78bcc02e95df2bd
+ARG NCBI_DATASETS_AMD64_SHA256=b569d60ca45d389776582da8529dda7ae5e013db2a16c7d2b19abedcab74a4fa
+ARG NCBI_DATASETS_ARM64_SHA256=2d817c9621bf3e5ea1e1f2c2d751ec4134ef4dd6c514bf37f8ab7b4476695b64
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -52,6 +55,7 @@ RUN set -eux; \
       printf "release_asset_sha256=%s\n" "${asset_sha256}"; \
       printf "linux_amd64_asset_sha256=%s\n" "${NCBI_DATASETS_AMD64_SHA256}"; \
       printf "linux_arm64_asset_sha256=%s\n" "${NCBI_DATASETS_ARM64_SHA256}"; \
+      printf "build_arch=%s\n" "${BUILDARCH}"; \
       printf "target_arch=%s\n" "${TARGETARCH}"; \
       printf "packaged_commands=datasets,dataformat\n"; \
       printf "dataformat_version_output=undefined (upstream release behavior)\n"; \
@@ -61,6 +65,9 @@ RUN set -eux; \
     rm -rf /tmp/build
 
 FROM busybox:1.37.0-musl
+
+ARG BUILDARCH
+ARG TARGETARCH
 
 ENV PATH=/opt/ncbi-datasets/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -75,16 +82,20 @@ RUN set -eux; \
     ln -s /opt/ncbi-datasets/bin/datasets /usr/local/bin/datasets; \
     ln -s /opt/ncbi-datasets/bin/dataformat /usr/local/bin/dataformat; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh; \
-    datasets --version 2>&1 | grep -Fx "datasets version: 18.34.0" >/dev/null; \
-    dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
-    datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
-    datasets summary genome accession --help 2>&1 | grep -F -- "--as-json-lines" >/dev/null; \
-    datasets download genome accession --help 2>&1 | grep -F -- "--dehydrated" >/dev/null; \
-    datasets rehydrate --help 2>&1 | grep -F -- "--directory" >/dev/null; \
-    dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \
-    dataformat tsv genome --help 2>&1 | grep -F -- "--fields" >/dev/null; \
-    dataformat excel genome --help 2>&1 | grep -F -- "--outputfile" >/dev/null; \
-    /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh all; \
+    test -n "${BUILDARCH}"; \
+    test -n "${TARGETARCH}"; \
+    if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
+      datasets --version 2>&1 | grep -Fx "datasets version: 18.35.0" >/dev/null; \
+      dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
+      datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
+      dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \
+      /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh buildtime; \
+    else \
+      test -x /opt/ncbi-datasets/bin/datasets; \
+      test -x /opt/ncbi-datasets/bin/dataformat; \
+      grep -Fx "build_arch=${BUILDARCH}" /opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt >/dev/null; \
+      grep -Fx "target_arch=${TARGETARCH}" /opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt >/dev/null; \
+    fi; \
     test -s /etc/ssl/certs/ca-certificates.crt; \
     test -s /opt/ncbi-datasets/share/licenses/ncbi-datasets/LICENSE.md
 

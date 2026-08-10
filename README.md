@@ -10,30 +10,30 @@ Package identity:
 - name: `ncbi-datasets`
 - command: `taf-ncbi-datasets`
 - kind: `tool`
-- version: `18.34.0-r1`
-- container image: `ghcr.io/taffish/ncbi-datasets:18.34.0-r1`
+- version: `18.35.0-r1`
+- container image: `ghcr.io/taffish/ncbi-datasets:18.35.0-r1`
 - default upstream command: `datasets`
 - companion command: `dataformat`
-- datasets runtime version: `18.34.0`
+- datasets runtime version: `18.35.0`
 - dataformat version output: `undefined` (upstream behavior)
 - TAFFISH app license: Apache-2.0
 - upstream license: Public Domain / United States Government Work
-- upstream release: `v18.34.0`
+- upstream release: `v18.35.0`
 
 ## What This App Packages
 
-The image installs the two official `v18.34.0` Linux release binaries:
+The image installs the two official `v18.35.0` Linux release binaries:
 
 - `datasets` queries NCBI metadata, downloads gene, genome, taxonomy, and virus
   data packages, and rehydrates dehydrated packages.
 - `dataformat` converts NCBI JSON Lines reports or package metadata into TSV or
   Excel workbooks and can inspect data package catalogs.
 
-Upstream 18.34.0 adds `all` as an accepted `--include` value for gene and
-virus genome downloads, allowing users to request all available sequence,
-report, and metadata file types in one command. It also improves the error
-messages returned for invalid or unrecognized taxonomy lookups. The actual CLI
-spelling is `--include all`; there is no separate standalone `--all` option.
+Upstream 18.35.0 adds sequence data-report plumbing and a corresponding
+`dataformat tsv sequence` formatter with `summary` and `summary-no-query`
+templates. The release also extends sequence report metadata with an update
+date, documents BioCollections and taxonomy citation resources, and clarifies
+that GC percentage values are rounded to the nearest 0.5 percent.
 
 The release archives are selected by container architecture and verified using
 the SHA-256 digests published by GitHub. The binaries are statically linked and
@@ -50,6 +50,7 @@ This app supports:
 - all-file gene and virus genome downloads via `--include all`
 - dehydrated package creation and network rehydration
 - JSON Lines metadata conversion to selected TSV fields
+- sequence data-report conversion with the `summary` templates
 - Excel workbook output
 - data package catalog inspection
 - optional NCBI API keys
@@ -124,6 +125,18 @@ taf-ncbi-datasets dataformat excel genome \
   --package ecoli.zip \
   --fields accession,organism-name,assminfo-name \
   --outputfile ecoli.xlsx
+```
+
+Format an existing sequence data report with the interface added in 18.35.0:
+
+```sh
+taf-ncbi-datasets dataformat tsv sequence \
+  --inputfile sequence_data_report.jsonl \
+  --template summary \
+  --force \
+  > sequences.tsv
+
+taf-ncbi-datasets dataformat tsv sequence --list-templates
 ```
 
 For a large genome set, request a dehydrated package, unpack it on the host,
@@ -214,18 +227,22 @@ The image is native on both declared Linux architectures:
 - `linux/amd64` uses `linux-amd64.cli.package.zip`
 - `linux/arm64` uses `linux-arm64.cli.package.zip`
 
-Both are official `v18.34.0` assets. Their exact archive digests and selected
-target architecture are recorded at
+Both are official `v18.35.0` assets. Their exact archive digests, build
+architecture, and selected target architecture are recorded at
 `/opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt`.
 
 The official binaries are statically linked Go executables. They are left
 unstripped to preserve the distributed upstream artifacts. A minimal BusyBox
 final stage and copied CA bundle avoid retaining a package manager or build
-toolchain.
+toolchain. On a native build, Dockerfile self-checks run exact identity, normal
+help, and lightweight TSV/sequence transformations. During an amd64-hosted
+arm64 cross-build, the Dockerfile verifies executable files and provenance
+without executing target binaries under QEMU; the full per-platform runtime
+smoke remains an independent release gate.
 
 ## Upstream Version Quirk
 
-`datasets --version` reports `datasets version: 18.34.0`. The official
+`datasets --version` reports `datasets version: 18.35.0`. The official
 `dataformat` binary distributed in the same release currently prints
 `undefined` for `dataformat version`; this is an upstream release behavior
 also reported by upstream users, not a TAFFISH wrapper substitution.
@@ -239,18 +256,18 @@ its version string.
 
 - upstream repository: <https://github.com/ncbi/datasets>
 - upstream release:
-  <https://github.com/ncbi/datasets/releases/tag/v18.34.0>
+  <https://github.com/ncbi/datasets/releases/tag/v18.35.0>
 - official CLI manual:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/>
 - data package reference:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-packages/>
 - API key guide:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/api/api-keys/>
-- upstream commit: `4ede49f02f32b33ed7f073b38b91fccfadaaf01f`
+- upstream commit: `f637b91702b9c216dfa2c172a78bcc02e95df2bd`
 - Linux amd64 archive SHA-256:
-  `80201706460d0b97e32e33b0daa62fa6cb5093d69745170efb0531b5dec40751`
+  `b569d60ca45d389776582da8529dda7ae5e013db2a16c7d2b19abedcab74a4fa`
 - Linux arm64 archive SHA-256:
-  `f57b26acbf9115f9d57bc9e6f3d88c86134517e7fed4202adb97dee458ba27a8`
+  `2d817c9621bf3e5ea1e1f2c2d751ec4134ef4dd6c514bf37f8ab7b4476695b64`
 
 ## Testing
 
@@ -259,13 +276,16 @@ Independent offline smoke cases verify:
 - exact `datasets` version and release provenance
 - the known upstream `dataformat version` output
 - summary, download, rehydrate, TSV, and Excel help surfaces
-- the 18.34.0 gene and virus genome `--include all` help contracts
+- the sequence formatter help surface and available template names
 - a real local JSON Lines to TSV conversion with exact fields and values
+- a real local sequence JSON Lines to summary TSV conversion
 - a real local JSON Lines to XLSX conversion with output signature checks
 - CA certificates and upstream license presence
 
-The same Dockerfile self-check runs on each declared architecture. Smoke never
-contacts NCBI, so Hub indexing remains deterministic and offline-safe.
+The Dockerfile uses the architecture-aware build-time split described above;
+the complete independent runtime smoke runs on each declared architecture.
+Smoke never contacts NCBI, so Hub indexing remains deterministic and
+offline-safe.
 
 Development integration testing may additionally perform a tiny live NCBI
 summary. That validates the current service path and TLS setup, but it cannot

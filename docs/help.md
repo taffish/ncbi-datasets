@@ -1,9 +1,8 @@
-ncbi-datasets 18.34.0-r1
+ncbi-datasets 18.35.0-r1
 
 Purpose:
-  Query and download NCBI gene, genome, taxonomy, and virus data packages with
-  datasets, then convert NCBI JSON Lines metadata to TSV or Excel with
-  dataformat.
+  Query/download NCBI data packages with datasets, then convert NCBI JSON
+  Lines metadata to TSV or Excel with dataformat.
 
 Usage:
   taf-ncbi-datasets -- --help
@@ -19,6 +18,8 @@ Common workflows:
     --fields accession,organism-name,assminfo-name
   taf-ncbi-datasets dataformat excel genome --package ecoli.zip \
     --outputfile ecoli.xlsx
+  taf-ncbi-datasets dataformat tsv sequence \
+    --inputfile sequence_data_report.jsonl --template summary --force
 
 Packaged commands:
   datasets     Query metadata, download data packages, and rehydrate packages.
@@ -66,13 +67,12 @@ Platform and resources:
 Boundaries:
   NCBI service availability, rate limits, data licenses, and record contents
   remain external to this app.
-  Version 18.34.0 accepts --include all for gene and virus genome downloads
-  and improves errors for invalid or unrecognized taxonomy lookups.
-  The official dataformat 18.34.0 binary prints "undefined" for its version
+  Version 18.35.0 adds dataformat tsv sequence with summary templates and
+  sequence report metadata such as update date.
+  The official dataformat 18.35.0 binary prints "undefined" for its version
   command. Package identity is pinned by the official archive checksums,
   datasets --version, release tag, commit, and functional dataformat tests.
   Offline smoke does not contact NCBI or validate production-scale downloads.
-
 Detailed documentation:
   https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/
   https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-packages/
