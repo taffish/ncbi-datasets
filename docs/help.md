@@ -1,4 +1,4 @@
-ncbi-datasets 18.35.0-r1
+ncbi-datasets 18.36.0-r1
 
 Purpose:
   Query/download NCBI data packages with datasets, then convert NCBI JSON
@@ -67,11 +67,11 @@ Platform and resources:
 Boundaries:
   NCBI service availability, rate limits, data licenses, and record contents
   remain external to this app.
-  Version 18.35.0 adds dataformat tsv sequence with summary templates and
-  sequence report metadata such as update date.
-  The official dataformat 18.35.0 binary prints "undefined" for its version
-  command. Package identity is pinned by the official archive checksums,
-  datasets --version, release tag, commit, and functional dataformat tests.
+  Version 18.36.0 hardens genome-download metadata handling and taxonomy query
+  labels; the command surface remains compatible. Sequence formatting added in
+  18.35.0 remains available. The official dataformat 18.36.0 binary prints
+  "undefined" for its version command. Package identity is pinned by archive
+  checksums, datasets --version, release tag, commit, and functional tests.
   Offline smoke does not contact NCBI or validate production-scale downloads.
 Detailed documentation:
   https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/

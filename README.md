@@ -10,30 +10,34 @@ Package identity:
 - name: `ncbi-datasets`
 - command: `taf-ncbi-datasets`
 - kind: `tool`
-- version: `18.35.0-r1`
-- container image: `ghcr.io/taffish/ncbi-datasets:18.35.0-r1`
+- version: `18.36.0-r1`
+- container image: `ghcr.io/taffish/ncbi-datasets:18.36.0-r1`
 - default upstream command: `datasets`
 - companion command: `dataformat`
-- datasets runtime version: `18.35.0`
+- datasets runtime version: `18.36.0`
 - dataformat version output: `undefined` (upstream behavior)
 - TAFFISH app license: Apache-2.0
 - upstream license: Public Domain / United States Government Work
-- upstream release: `v18.35.0`
+- upstream release: `v18.36.0`
 
 ## What This App Packages
 
-The image installs the two official `v18.35.0` Linux release binaries:
+The image installs the two official `v18.36.0` Linux release binaries:
 
 - `datasets` queries NCBI metadata, downloads gene, genome, taxonomy, and virus
   data packages, and rehydrates dehydrated packages.
 - `dataformat` converts NCBI JSON Lines reports or package metadata into TSV or
   Excel workbooks and can inspect data package catalogs.
 
-Upstream 18.35.0 adds sequence data-report plumbing and a corresponding
-`dataformat tsv sequence` formatter with `summary` and `summary-no-query`
-templates. The release also extends sequence report metadata with an update
-date, documents BioCollections and taxonomy citation resources, and clarifies
-that GC percentage values are rounded to the nearest 0.5 percent.
+Upstream 18.36.0 is a maintenance release focused on service performance and
+reliability. Its client changes tolerate missing optional genome-download
+summary fields and preserve taxonomy query labels more reliably, including for
+numeric and merged taxon IDs. It does not add a release executable or a new
+command-line dependency.
+
+The packaged interface continues to include the sequence data-report plumbing
+introduced in 18.35.0 and the corresponding `dataformat tsv sequence`
+formatter with `summary` and `summary-no-query` templates.
 
 The release archives are selected by container architecture and verified using
 the SHA-256 digests published by GitHub. The binaries are statically linked and
@@ -58,6 +62,10 @@ This app supports:
 
 This app does not mirror NCBI databases, freeze remote records, bypass NCBI
 rate limits, or bundle downloaded biological data.
+
+Upstream also provides the hosted NCBI Datasets web interface. It is an
+NCBI-operated external service, not an optional local GUI, plugin, or companion
+binary in the CLI release archives, so it is outside this command-line app.
 
 ## Container Contents
 
@@ -227,7 +235,7 @@ The image is native on both declared Linux architectures:
 - `linux/amd64` uses `linux-amd64.cli.package.zip`
 - `linux/arm64` uses `linux-arm64.cli.package.zip`
 
-Both are official `v18.35.0` assets. Their exact archive digests, build
+Both are official `v18.36.0` assets. Their exact archive digests, build
 architecture, and selected target architecture are recorded at
 `/opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt`.
 
@@ -242,7 +250,7 @@ smoke remains an independent release gate.
 
 ## Upstream Version Quirk
 
-`datasets --version` reports `datasets version: 18.35.0`. The official
+`datasets --version` reports `datasets version: 18.36.0`. The official
 `dataformat` binary distributed in the same release currently prints
 `undefined` for `dataformat version`; this is an upstream release behavior
 also reported by upstream users, not a TAFFISH wrapper substitution.
@@ -256,18 +264,18 @@ its version string.
 
 - upstream repository: <https://github.com/ncbi/datasets>
 - upstream release:
-  <https://github.com/ncbi/datasets/releases/tag/v18.35.0>
+  <https://github.com/ncbi/datasets/releases/tag/v18.36.0>
 - official CLI manual:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/>
 - data package reference:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/data-packages/>
 - API key guide:
   <https://www.ncbi.nlm.nih.gov/datasets/docs/v2/api/api-keys/>
-- upstream commit: `f637b91702b9c216dfa2c172a78bcc02e95df2bd`
+- upstream commit: `09ab6707e79b198d5d939c82b4cd5ea6c1aa757d`
 - Linux amd64 archive SHA-256:
-  `b569d60ca45d389776582da8529dda7ae5e013db2a16c7d2b19abedcab74a4fa`
+  `32003304f61e70ebeb58b09a69ea1cef6f4f159683ced7eba063fcb8bb16f0ea`
 - Linux arm64 archive SHA-256:
-  `2d817c9621bf3e5ea1e1f2c2d751ec4134ef4dd6c514bf37f8ab7b4476695b64`
+  `2af3b1d473b337ca276ed1db0c8493c630b34aca0b886ccfd6e8502287661abb`
 
 ## Testing
 
@@ -275,7 +283,7 @@ Independent offline smoke cases verify:
 
 - exact `datasets` version and release provenance
 - the known upstream `dataformat version` output
-- summary, download, rehydrate, TSV, and Excel help surfaces
+- genome/taxonomy summary, download, rehydrate, TSV, and Excel help surfaces
 - the sequence formatter help surface and available template names
 - a real local JSON Lines to TSV conversion with exact fields and values
 - a real local sequence JSON Lines to summary TSV conversion

@@ -4,10 +4,10 @@ FROM debian:bookworm-slim AS builder
 
 ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.35.0
-ARG NCBI_DATASETS_COMMIT=f637b91702b9c216dfa2c172a78bcc02e95df2bd
-ARG NCBI_DATASETS_AMD64_SHA256=b569d60ca45d389776582da8529dda7ae5e013db2a16c7d2b19abedcab74a4fa
-ARG NCBI_DATASETS_ARM64_SHA256=2d817c9621bf3e5ea1e1f2c2d751ec4134ef4dd6c514bf37f8ab7b4476695b64
+ARG NCBI_DATASETS_VERSION=18.36.0
+ARG NCBI_DATASETS_COMMIT=09ab6707e79b198d5d939c82b4cd5ea6c1aa757d
+ARG NCBI_DATASETS_AMD64_SHA256=32003304f61e70ebeb58b09a69ea1cef6f4f159683ced7eba063fcb8bb16f0ea
+ARG NCBI_DATASETS_ARM64_SHA256=2af3b1d473b337ca276ed1db0c8493c630b34aca0b886ccfd6e8502287661abb
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -85,7 +85,7 @@ RUN set -eux; \
     test -n "${BUILDARCH}"; \
     test -n "${TARGETARCH}"; \
     if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
-      datasets --version 2>&1 | grep -Fx "datasets version: 18.35.0" >/dev/null; \
+      datasets --version 2>&1 | grep -Fx "datasets version: 18.36.0" >/dev/null; \
       dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
       datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
       dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \
