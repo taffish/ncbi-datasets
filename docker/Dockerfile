@@ -1,13 +1,11 @@
-ARG BUILDARCH
-
-FROM debian:bookworm-slim AS builder
+FROM debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe64d6990e4b07ea4171 AS builder
 
 ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.36.0
-ARG NCBI_DATASETS_COMMIT=09ab6707e79b198d5d939c82b4cd5ea6c1aa757d
-ARG NCBI_DATASETS_AMD64_SHA256=32003304f61e70ebeb58b09a69ea1cef6f4f159683ced7eba063fcb8bb16f0ea
-ARG NCBI_DATASETS_ARM64_SHA256=2af3b1d473b337ca276ed1db0c8493c630b34aca0b886ccfd6e8502287661abb
+ARG NCBI_DATASETS_VERSION=18.37.0
+ARG NCBI_DATASETS_COMMIT=c641ac110f9f4d756c67e678f646bb1b711b1dd3
+ARG NCBI_DATASETS_AMD64_SHA256=f553860753712e6628e4f0f45a1388f9ad27e6f9d5d07549d1c87cd208955f4b
+ARG NCBI_DATASETS_ARM64_SHA256=1c8784b02d42d99194f2d82a2636377f934ba8f414d1eb848210b39fb9cc6004
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -16,8 +14,21 @@ RUN set -eux; \
     apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
         ca-certificates \
         curl \
+        python3 \
         unzip; \
     rm -rf /var/lib/apt/lists/*
+
+COPY docker/collect-notices.py docker/notices.lock.json /tmp/notice-input/
+COPY docker/public-source/ /tmp/notice-input/public-source/
+RUN set -eux; \
+    python3 /tmp/notice-input/collect-notices.py \
+      --lock /tmp/notice-input/notices.lock.json \
+      --source /tmp/notice-input/public-source \
+      --cache /tmp/notice-cache \
+      --out /opt/ncbi-datasets/share/licenses/third-party --download; \
+    install -d /opt/ncbi-datasets/share/licenses/ca-certificates; \
+    cp /usr/share/doc/ca-certificates/copyright /opt/ncbi-datasets/share/licenses/ca-certificates/; \
+    rm -rf /tmp/notice-input /tmp/notice-cache
 
 WORKDIR /tmp/build
 
@@ -64,7 +75,7 @@ RUN set -eux; \
     } > /opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt; \
     rm -rf /tmp/build
 
-FROM busybox:1.37.0-musl
+FROM busybox:1.37.0-musl@sha256:fc6dddc4c44b1bfe37f41cae8e67d1693828e8f42a91862816d7953e2c9d3f23
 
 ARG BUILDARCH
 ARG TARGETARCH
@@ -76,16 +87,19 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certifi
 COPY --from=builder /opt/ncbi-datasets /opt/ncbi-datasets
 COPY docker/upstream-LICENSE.md /opt/ncbi-datasets/share/licenses/ncbi-datasets/LICENSE.md
 COPY docker/ncbi-datasets-smoke.sh /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh
+COPY docker/check-notices.sh /opt/ncbi-datasets/share/testdata/check-notices.sh
 
 RUN set -eux; \
     mkdir -p /usr/local/bin; \
     ln -s /opt/ncbi-datasets/bin/datasets /usr/local/bin/datasets; \
     ln -s /opt/ncbi-datasets/bin/dataformat /usr/local/bin/dataformat; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh; \
+    chmod 0755 /opt/ncbi-datasets/share/testdata/check-notices.sh; \
+    /opt/ncbi-datasets/share/testdata/check-notices.sh; \
     test -n "${BUILDARCH}"; \
     test -n "${TARGETARCH}"; \
     if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
-      datasets --version 2>&1 | grep -Fx "datasets version: 18.36.0" >/dev/null; \
+      datasets --version 2>&1 | grep -Fx "datasets version: 18.37.0" >/dev/null; \
       dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
       datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
       dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \

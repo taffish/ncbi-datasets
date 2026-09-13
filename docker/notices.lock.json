@@ -1,0 +1,924 @@
+{
+  "schema": 2,
+  "ncbi_version": "18.37.0",
+  "ncbi_commit": "c641ac110f9f4d756c67e678f646bb1b711b1dd3",
+  "coverage": "audited-provider-notices-and-required-source-materials",
+  "public_go_mod_sha256": "d95b4216d222e61ee185b857864850bb95f45097240f0e474d111a83c9d87364",
+  "public_go_sum_sha256": "501c5afb2998058f4010e71d309b9815f61e9b5368597123b0fe70d11ee758d1",
+  "modules": [
+    {
+      "module": "bou.ke/monkey",
+      "source_version": "v1.0.2",
+      "url": "https://proxy.golang.org/bou.ke/monkey/@v/v1.0.2.zip",
+      "archive": "bou.ke__monkey@v1.0.2.zip",
+      "sha256": "652f07fe80b290e6573ddee68bf5fdcd68ea1f280f5fcb7a93941c7d53d0a899",
+      "go_sum": "h1:kWcnsrCNUatbxncxR/ThdYqbytgOIArtYWqcQLQzKLI=",
+      "notices": [
+        "bou.ke/monkey@v1.0.2/LICENSE.md"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/antihax/optional",
+      "source_version": "v1.0.0",
+      "url": "https://proxy.golang.org/github.com/antihax/optional/@v/v1.0.0.zip",
+      "archive": "github.com__antihax__optional@v1.0.0.zip",
+      "sha256": "15ab4d41bdbb72ee0ac63db616cdefc7671c79e13d0f73b58355a6a88219c97f",
+      "go_sum": "h1:xK2lYat7ZLaVVcIuj82J8kIro4V6kDe0AUDFboUCwcg=",
+      "notices": [
+        "github.com/antihax/optional@v1.0.0/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/araddon/dateparse",
+      "source_version": "v0.0.0-20210429162001-6b43995a97de",
+      "url": "https://proxy.golang.org/github.com/araddon/dateparse/@v/v0.0.0-20210429162001-6b43995a97de.zip",
+      "archive": "github.com__araddon__dateparse@v0.0.0-20210429162001-6b43995a97de.zip",
+      "sha256": "8fe74d5b36a9aa66c1350657009296469f8aa5b6925acd178044cd248023fc5a",
+      "go_sum": "h1:FxWPpzIjnTlhPwqqXc4/vE0f7GvRjuAsbW+HOIe8KnA=",
+      "notices": [
+        "github.com/araddon/dateparse@v0.0.0-20210429162001-6b43995a97de/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/docker/go-units",
+      "source_version": "v0.5.0",
+      "url": "https://proxy.golang.org/github.com/docker/go-units/@v/v0.5.0.zip",
+      "archive": "github.com__docker__go-units@v0.5.0.zip",
+      "sha256": "039d53ebe64af1aefa0be94ce42c621a17a3052c58ad15e5b3f357529beeaff6",
+      "go_sum": "h1:69rxXcBk27SvSaaxTtLh/8llcHD8vYHT7WSdRZ/jvr4=",
+      "notices": [
+        "github.com/docker/go-units@v0.5.0/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/gosuri/uiprogress",
+      "source_version": "v0.0.1",
+      "url": "https://proxy.golang.org/github.com/gosuri/uiprogress/@v/v0.0.1.zip",
+      "archive": "github.com__gosuri__uiprogress@v0.0.1.zip",
+      "sha256": "ee02e63609cfbb2f0ce29ecef7cd626f4efc2b508a6105721bf5deff597fd34a",
+      "go_sum": "h1:0kpv/XY/qTmFWl/SkaJykZXrBBzwwadmW8fRb7RJSxw=",
+      "notices": [
+        "github.com/gosuri/uiprogress@v0.0.1/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/hashicorp/go-cleanhttp",
+      "source_version": "v0.5.2",
+      "url": "https://proxy.golang.org/github.com/hashicorp/go-cleanhttp/@v/v0.5.2.zip",
+      "archive": "github.com__hashicorp__go-cleanhttp@v0.5.2.zip",
+      "sha256": "e9f3dcfcb33172ba499b4f8e888169252d7f1e072082182124a6e2053523f7df",
+      "go_sum": "h1:035FKYIWjmULyFRBKPs8TBQoi0x6d9G4xc9neXJWAZQ=",
+      "notices": [
+        "github.com/hashicorp/go-cleanhttp@v0.5.2/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/hashicorp/go-retryablehttp",
+      "source_version": "v0.7.7",
+      "url": "https://proxy.golang.org/github.com/hashicorp/go-retryablehttp/@v/v0.7.7.zip",
+      "archive": "github.com__hashicorp__go-retryablehttp@v0.7.7.zip",
+      "sha256": "29fa3655abd0a7c91f3a1eb186d309ec24b580afb10d39a3cdfa8cde0e99e0a9",
+      "go_sum": "h1:C8hUCYzor8PIfXHa4UrZkU4VvK8o9ISHxT2Q8+VepXU=",
+      "notices": [
+        "github.com/hashicorp/go-retryablehttp@v0.7.7/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/spf13/afero",
+      "source_version": "v1.11.0",
+      "url": "https://proxy.golang.org/github.com/spf13/afero/@v/v1.11.0.zip",
+      "archive": "github.com__spf13__afero@v1.11.0.zip",
+      "sha256": "70ae59086db6bfb64b509f597c8eff3d7ab56f8f0052f947f67b68899da3491c",
+      "go_sum": "h1:WJQKhtpdm3v2IzqG8VMqrr6Rf3UYpEF239Jy9wNepM8=",
+      "notices": [
+        "github.com/spf13/afero@v1.11.0/LICENSE.txt"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/spf13/cobra",
+      "source_version": "v1.8.1",
+      "url": "https://proxy.golang.org/github.com/spf13/cobra/@v/v1.8.1.zip",
+      "archive": "github.com__spf13__cobra@v1.8.1.zip",
+      "sha256": "bf27a276f87257c93bc057309df30265a19beefc3d5fc887cbd8fc99ad35466a",
+      "go_sum": "h1:e5/vxKd/rZsfSJMUX1agtjeTDf+qv1/JdBF8gg5k9ZM=",
+      "notices": [
+        "github.com/spf13/cobra@v1.8.1/LICENSE.txt"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/spf13/pflag",
+      "source_version": "v1.0.5",
+      "url": "https://proxy.golang.org/github.com/spf13/pflag/@v/v1.0.5.zip",
+      "archive": "github.com__spf13__pflag@v1.0.5.zip",
+      "sha256": "fc6e704f2f6a84ddcdce6de0404e5340fa20c8676181bf5d381b17888107ba84",
+      "go_sum": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
+      "notices": [
+        "github.com/spf13/pflag@v1.0.5/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/stretchr/testify",
+      "source_version": "v1.9.0",
+      "url": "https://proxy.golang.org/github.com/stretchr/testify/@v/v1.9.0.zip",
+      "archive": "github.com__stretchr__testify@v1.9.0.zip",
+      "sha256": "ee5d4f73cb689b1b5432c6908a189f9fbdb172507c49c32dbdf79b239ea9b8e0",
+      "go_sum": "h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=",
+      "notices": [
+        "github.com/stretchr/testify@v1.9.0/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/thediveo/enumflag/v2",
+      "source_version": "v2.0.7",
+      "url": "https://proxy.golang.org/github.com/thediveo/enumflag/v2/@v/v2.0.7.zip",
+      "archive": "github.com__thediveo__enumflag__v2@v2.0.7.zip",
+      "sha256": "1224c1cc09f1fbf26585b05d01a5eaa1470441c17935b67fd5104b297d5d9354",
+      "go_sum": "h1:uxXDU+rTel7Hg4X0xdqICpG9rzuI/mzLAEYXWLflOfs=",
+      "notices": [
+        "github.com/thediveo/enumflag/v2@v2.0.7/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "gitlab.com/metakeule/fmtdate",
+      "source_version": "v1.2.2",
+      "url": "https://proxy.golang.org/gitlab.com/metakeule/fmtdate/@v/v1.2.2.zip",
+      "archive": "gitlab.com__metakeule__fmtdate@v1.2.2.zip",
+      "sha256": "b37b29ca0fef29760e2a56b6d6c3d19cb4dfd874677a9e854d0854399b977f9e",
+      "go_sum": "h1:ce0Qnwo6PAONi6xwPr4YxdxAFIKqNfoMbHG4c49vIjk=",
+      "notices": [
+        "gitlab.com/metakeule/fmtdate@v1.2.2/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "golang.org/x/exp",
+      "source_version": "v0.0.0-20250103183323-7d7fa50e5329",
+      "url": "https://proxy.golang.org/golang.org/x/exp/@v/v0.0.0-20250103183323-7d7fa50e5329.zip",
+      "archive": "golang.org__x__exp@v0.0.0-20250103183323-7d7fa50e5329.zip",
+      "sha256": "d239b3a104223f683053f9ab86d54463c8a00909bb402d77c26e45c2e8e3a588",
+      "go_sum": "h1:9kj3STMvgqy3YA4VQXBrN7925ICMxD5wzMRcgA30588=",
+      "notices": [
+        "golang.org/x/exp@v0.0.0-20250103183323-7d7fa50e5329/LICENSE",
+        "golang.org/x/exp@v0.0.0-20250103183323-7d7fa50e5329/PATENTS"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "golang.org/x/text",
+      "source_version": "v0.22.0",
+      "url": "https://proxy.golang.org/golang.org/x/text/@v/v0.22.0.zip",
+      "archive": "golang.org__x__text@v0.22.0.zip",
+      "sha256": "939cb4c202aa8fa302f2ba6f9d29165ce82fce9c665d9a1a0bb0d9e51b79e6f5",
+      "go_sum": "h1:bofq7m3/HAFvbF51jz3Q9wLg3jkvSPuiZu/pD1XwgtM=",
+      "notices": [
+        "golang.org/x/text@v0.22.0/LICENSE",
+        "golang.org/x/text@v0.22.0/PATENTS"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/davecgh/go-spew",
+      "source_version": "v1.1.1",
+      "url": "https://proxy.golang.org/github.com/davecgh/go-spew/@v/v1.1.1.zip",
+      "archive": "github.com__davecgh__go-spew@v1.1.1.zip",
+      "sha256": "6b44a843951f371b7010c754ecc3cabefe815d5ced1c5b9409fb2d697e8a890d",
+      "go_sum": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=",
+      "notices": [
+        "github.com/davecgh/go-spew@v1.1.1/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/gosuri/uilive",
+      "source_version": "v0.0.3",
+      "url": "https://proxy.golang.org/github.com/gosuri/uilive/@v/v0.0.3.zip",
+      "archive": "github.com__gosuri__uilive@v0.0.3.zip",
+      "sha256": "4dbd08af08ac3aeee8781922c6c71e858c1284feb028ca64924295ed223557e3",
+      "go_sum": "h1:kvo6aB3pez9Wbudij8srWo4iY6SFTTxTKOkb+uRCE8I=",
+      "notices": [
+        "github.com/gosuri/uilive@v0.0.3/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/inconshreveable/mousetrap",
+      "source_version": "v1.1.0",
+      "url": "https://proxy.golang.org/github.com/inconshreveable/mousetrap/@v/v1.1.0.zip",
+      "archive": "github.com__inconshreveable__mousetrap@v1.1.0.zip",
+      "sha256": "526674de624d7db108cfe7653ef110ccdfd97bc85026254224815567928ed243",
+      "go_sum": "h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=",
+      "notices": [
+        "github.com/inconshreveable/mousetrap@v1.1.0/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/mattn/go-isatty",
+      "source_version": "v0.0.20",
+      "url": "https://proxy.golang.org/github.com/mattn/go-isatty/@v/v0.0.20.zip",
+      "archive": "github.com__mattn__go-isatty@v0.0.20.zip",
+      "sha256": "f2d5f89ca451577e17464b9bb596dc0d0ecececb5eaa63622c41b57cd0b7b8cc",
+      "go_sum": "h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=",
+      "notices": [
+        "github.com/mattn/go-isatty@v0.0.20/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "github.com/pmezard/go-difflib",
+      "source_version": "v1.0.0",
+      "url": "https://proxy.golang.org/github.com/pmezard/go-difflib/@v/v1.0.0.zip",
+      "archive": "github.com__pmezard__go-difflib@v1.0.0.zip",
+      "sha256": "de04cecc1a4b8d53e4357051026794bcbc54f2e6a260cfac508ce69d5d6457a0",
+      "go_sum": "h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=",
+      "notices": [
+        "github.com/pmezard/go-difflib@v1.0.0/LICENSE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "golang.org/x/sys",
+      "source_version": "v0.28.0",
+      "url": "https://proxy.golang.org/golang.org/x/sys/@v/v0.28.0.zip",
+      "archive": "golang.org__x__sys@v0.28.0.zip",
+      "sha256": "0ed47a83fe7d7a7e743e815172bc10c1ac0ed0d31ebb095e75717428e09aa895",
+      "go_sum": "h1:Fksou7UEQUWlKvIdsqzJmUmCX3cZuD2+P3XyyzwMhlA=",
+      "notices": [
+        "golang.org/x/sys@v0.28.0/LICENSE",
+        "golang.org/x/sys@v0.28.0/PATENTS"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    },
+    {
+      "module": "gopkg.in/yaml.v3",
+      "source_version": "v3.0.1",
+      "url": "https://proxy.golang.org/gopkg.in/yaml.v3/@v/v3.0.1.zip",
+      "archive": "gopkg.in__yaml.v3@v3.0.1.zip",
+      "sha256": "aab8fbc4e6300ea08e6afe1caea18a21c90c79f489f52c53e2f20431f1a9a015",
+      "go_sum": "h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=",
+      "notices": [
+        "gopkg.in/yaml.v3@v3.0.1/LICENSE",
+        "gopkg.in/yaml.v3@v3.0.1/NOTICE"
+      ],
+      "basis": "NCBI v18.37.0 public datasets go.mod; not a dataformat version claim"
+    }
+  ],
+  "go": {
+    "version": "go1.23.4",
+    "url": "https://go.dev/dl/go1.23.4.src.tar.gz",
+    "archive": "go1.23.4.src.tar.gz",
+    "sha256": "ad345ac421e90814293a9699cca19dd5238251c3f687980bbcae28495b263531"
+  },
+  "binary_sbom_complete": false,
+  "dataformat_notice_references": [
+    {
+      "module": "github.com/frankban/quicktest",
+      "notice_source_version": "v1.14.6",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/frankban/quicktest/@v/v1.14.6.zip",
+      "archive": "github.com__frankban__quicktest@v1.14.6.zip",
+      "sha256": "8c7377023523780b2a6508f3c06bd3bbefd3dda064533ad6ff6724986234988d",
+      "notices": [
+        "github.com/frankban/quicktest@v1.14.6/LICENSE"
+      ],
+      "repo": "frankban/quicktest",
+      "license_history": [
+        {
+          "commit": "aebaf3b9dd1112aadbe76bc61c60d8d26b979cb2",
+          "date": "2017-12-14T12:12:06Z",
+          "url": "https://raw.githubusercontent.com/frankban/quicktest/aebaf3b9dd1112aadbe76bc61c60d8d26b979cb2/LICENSE",
+          "sha256": "59032c2e37c85c6821f7ea02d63e67e660e4bd6b50c802cf99cb2e3d8e175540"
+        },
+        {
+          "commit": "8799a1dcf31ee5aadd0f3793d0253e2016b7bccc",
+          "date": "2017-09-14T12:56:15Z",
+          "url": "https://raw.githubusercontent.com/frankban/quicktest/8799a1dcf31ee5aadd0f3793d0253e2016b7bccc/LICENSE",
+          "sha256": "57fe81933ffee611aaea8644704e4ec18aa2c47ed64bf44b5cb784446fd43dd0"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:7Xjx+VpznH+oBnejlPUj8oUpdxnVs4f8XU8WnHkI4W8=",
+      "license_family": "MIT"
+    },
+    {
+      "module": "github.com/google/btree",
+      "notice_source_version": "v1.1.3",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/google/btree/@v/v1.1.3.zip",
+      "archive": "github.com__google__btree@v1.1.3.zip",
+      "sha256": "11b736bc8252b52fecdf346d3707ccf3a2b6d458ba21b4f843616fc12eeb30b2",
+      "notices": [
+        "github.com/google/btree@v1.1.3/LICENSE"
+      ],
+      "repo": "google/btree",
+      "license_history": [
+        {
+          "commit": "f7f14e67160ebd63def5cad41c356d1cf9d52c65",
+          "date": "2014-07-31T18:17:52Z",
+          "url": "https://raw.githubusercontent.com/google/btree/f7f14e67160ebd63def5cad41c356d1cf9d52c65/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:CVpQJjYgC4VbzxeGVHfvZrv1ctoYCAI8vbl07Fcxlyg=",
+      "license_family": "Apache-2.0"
+    },
+    {
+      "module": "github.com/google/go-cmp",
+      "notice_source_version": "v0.7.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/google/go-cmp/@v/v0.7.0.zip",
+      "archive": "github.com__google__go-cmp@v0.7.0.zip",
+      "sha256": "64a9ce046f2c320e3783fba0d1f4a15f8a18f0b009b67bf27f7630919db3f539",
+      "notices": [
+        "github.com/google/go-cmp@v0.7.0/LICENSE"
+      ],
+      "repo": "google/go-cmp",
+      "license_history": [
+        {
+          "commit": "1c57fff5373af756ecb7a9aa4860f55ad0782b36",
+          "date": "2017-07-07T19:35:59Z",
+          "url": "https://raw.githubusercontent.com/google/go-cmp/1c57fff5373af756ecb7a9aa4860f55ad0782b36/LICENSE",
+          "sha256": "17b5d209ba8f9684257ecfcff87df6ceda6194143a8fbd074f29727cff6f0c40"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "github.com/grpc-ecosystem/grpc-gateway/v2",
+      "notice_source_version": "v2.26.1",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/grpc-ecosystem/grpc-gateway/v2/@v/v2.26.1.zip",
+      "archive": "github.com__grpc-ecosystem__grpc-gateway__v2@v2.26.1.zip",
+      "sha256": "047b0ea3c08a71be099a31c6bb5b3bba01a073d79ebfd9facc5f07bfb5d9a7f6",
+      "notices": [
+        "github.com/grpc-ecosystem/grpc-gateway/v2@v2.26.1/LICENSE",
+        "github.com/grpc-ecosystem/grpc-gateway/v2@v2.26.1/internal/casing/LICENSE.md"
+      ],
+      "repo": "grpc-ecosystem/grpc-gateway",
+      "license_history": [
+        {
+          "commit": "bfe6d92b0a6e46e32d3a0bafd4bd5d56d7eb10de",
+          "date": "2023-06-06T18:44:10Z",
+          "url": "https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/bfe6d92b0a6e46e32d3a0bafd4bd5d56d7eb10de/LICENSE",
+          "sha256": "a15b1d1b168954c92ff7fb1620382418f7c72f4f4d251ee791d1098ad68ab0c4"
+        },
+        {
+          "commit": "25bab2e5e4a83f5e6fd7458a3eea9a7ecd829c58",
+          "date": "2015-04-07T06:36:13Z",
+          "url": "https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/25bab2e5e4a83f5e6fd7458a3eea9a7ecd829c58/LICENSE.txt",
+          "sha256": "a15b1d1b168954c92ff7fb1620382418f7c72f4f4d251ee791d1098ad68ab0c4"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:e9Rjr40Z98/clHv5Yg79Is0NtosR5LXRvdr7o/6NwbA=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "github.com/kr/pretty",
+      "notice_source_version": "v0.3.1",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/kr/pretty/@v/v0.3.1.zip",
+      "archive": "github.com__kr__pretty@v0.3.1.zip",
+      "sha256": "ecf5a4af24826c3ad758ce06410ca08e2d58e4d95053be3b9dde2e14852c0cdc",
+      "notices": [
+        "github.com/kr/pretty@v0.3.1/License"
+      ],
+      "repo": "kr/pretty",
+      "license_history": [
+        {
+          "commit": "4e0886370c3a67530192c6a238cff68f56c141b0",
+          "date": "2019-12-31T23:40:08Z",
+          "url": "https://raw.githubusercontent.com/kr/pretty/4e0886370c3a67530192c6a238cff68f56c141b0/License",
+          "sha256": "283c28b781bc7487bd7bcaf453cbd811f5ee8d7ce625cfcf8dcacae6ba1f4bb5"
+        },
+        {
+          "commit": "088c856450c08c03eb32f7a6c221e6eefaa10e6f",
+          "date": "2014-07-23T05:49:09Z",
+          "url": "https://raw.githubusercontent.com/kr/pretty/088c856450c08c03eb32f7a6c221e6eefaa10e6f/License",
+          "sha256": "4e26b8fcc034e2221b016f5a33e6eb741912577c5d0d406e924df1f27d05de79"
+        },
+        {
+          "commit": "195524255c32890818bd298d996e3dbe353fcb57",
+          "date": "2013-01-19T01:05:07Z",
+          "url": "https://raw.githubusercontent.com/kr/pretty/195524255c32890818bd298d996e3dbe353fcb57/License",
+          "sha256": "283c28b781bc7487bd7bcaf453cbd811f5ee8d7ce625cfcf8dcacae6ba1f4bb5"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=",
+      "license_family": "MIT"
+    },
+    {
+      "module": "github.com/kr/text",
+      "notice_source_version": "v0.2.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/kr/text/@v/v0.2.0.zip",
+      "archive": "github.com__kr__text@v0.2.0.zip",
+      "sha256": "368eb318f91a5b67be905c47032ab5c31a1d49a97848b1011a0d0a2122b30ba4",
+      "notices": [
+        "github.com/kr/text@v0.2.0/License"
+      ],
+      "repo": "kr/text",
+      "license_history": [
+        {
+          "commit": "6807e777504f54ad073ecef66747de158294b639",
+          "date": "2013-09-11T01:55:32Z",
+          "url": "https://raw.githubusercontent.com/kr/text/6807e777504f54ad073ecef66747de158294b639/License",
+          "sha256": "283c28b781bc7487bd7bcaf453cbd811f5ee8d7ce625cfcf8dcacae6ba1f4bb5"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=",
+      "license_family": "MIT"
+    },
+    {
+      "module": "github.com/mattn/go-isatty",
+      "notice_source_version": "v0.0.20",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/mattn/go-isatty/@v/v0.0.20.zip",
+      "archive": "github.com__mattn__go-isatty@v0.0.20.zip",
+      "sha256": "f2d5f89ca451577e17464b9bb596dc0d0ecececb5eaa63622c41b57cd0b7b8cc",
+      "notices": [
+        "github.com/mattn/go-isatty@v0.0.20/LICENSE"
+      ],
+      "repo": "mattn/go-isatty",
+      "license_history": [
+        {
+          "commit": "f60d2531791bff204565edaa69909b68ff4d2c9e",
+          "date": "2015-08-14T00:11:57Z",
+          "url": "https://raw.githubusercontent.com/mattn/go-isatty/f60d2531791bff204565edaa69909b68ff4d2c9e/LICENSE",
+          "sha256": "08eab1118c80885fa1fa6a6dd7303f65a379fcb3733e063d20d1bbc2c76e6fa1"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=",
+      "license_family": "MIT"
+    },
+    {
+      "module": "github.com/rogpeppe/fastuuid",
+      "notice_source_version": "v1.2.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/rogpeppe/fastuuid/@v/v1.2.0.zip",
+      "archive": "github.com__rogpeppe__fastuuid@v1.2.0.zip",
+      "sha256": "f9b8293f5e20270e26fb4214ca7afec864de92c73d03ff62b5ee29d1db4e72a1",
+      "notices": [
+        "github.com/rogpeppe/fastuuid@v1.2.0/LICENSE"
+      ],
+      "repo": "rogpeppe/fastuuid",
+      "license_history": [
+        {
+          "commit": "6724a57986aff9bff1a1770e9347036def7c89f6",
+          "date": "2015-01-06T09:32:20Z",
+          "url": "https://raw.githubusercontent.com/rogpeppe/fastuuid/6724a57986aff9bff1a1770e9347036def7c89f6/LICENSE",
+          "sha256": "247388117b7e88603575232d3e6444f290c5999179eab964c5118b332008daf2"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:Ppwyp6VYCF1nvBTXL3trRso7mXMlRrw9ooo375wvi2s=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "github.com/rogpeppe/go-internal",
+      "notice_source_version": "v1.13.1",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/rogpeppe/go-internal/@v/v1.13.1.zip",
+      "archive": "github.com__rogpeppe__go-internal@v1.13.1.zip",
+      "sha256": "cc0746bf67c2d5d536d305db9f7c5cbe8ffa84928fd90262fb447685db0f1bc2",
+      "notices": [
+        "github.com/rogpeppe/go-internal@v1.13.1/LICENSE"
+      ],
+      "repo": "rogpeppe/go-internal",
+      "license_history": [
+        {
+          "commit": "d6cee272612b4b5363dd6ccab21ecff102fab540",
+          "date": "2018-12-17T17:24:02Z",
+          "url": "https://raw.githubusercontent.com/rogpeppe/go-internal/d6cee272612b4b5363dd6ccab21ecff102fab540/LICENSE",
+          "sha256": "4835612df0098ca95f8e7d9e3bffcb02358d435dbb38057c844c99d7f725eb20"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:KvO1DLK/DRN07sQ1LQKScxyZJuNnedQ5/wKSR38lUII=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "github.com/shabbyrobe/xmlwriter",
+      "notice_source_version": "v0.0.0-20200208144257-9fca06d00ffa",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/shabbyrobe/xmlwriter/@v/v0.0.0-20200208144257-9fca06d00ffa.zip",
+      "archive": "github.com__shabbyrobe__xmlwriter@v0.0.0-20200208144257-9fca06d00ffa.zip",
+      "sha256": "95acdde26860fa9a4292e7cd75244f3769eea331285734f07287c4eb7483c209",
+      "notices": [
+        "github.com/shabbyrobe/xmlwriter@v0.0.0-20200208144257-9fca06d00ffa/LICENSE",
+        "github.com/shabbyrobe/xmlwriter@v0.0.0-20200208144257-9fca06d00ffa/tester/LICENSE"
+      ],
+      "repo": "shabbyrobe/xmlwriter",
+      "license_history": [
+        {
+          "commit": "94479b35fc46ca931086ad89e5410705928ee32e",
+          "date": "2017-04-12T03:46:55Z",
+          "url": "https://raw.githubusercontent.com/shabbyrobe/xmlwriter/94479b35fc46ca931086ad89e5410705928ee32e/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:2cO3RojjYl3hVTbEvJVqrMaFmORhL6O06qdW42toftk=",
+      "license_family": "Apache-2.0 AND BSD-3-Clause"
+    },
+    {
+      "module": "github.com/spf13/cobra",
+      "notice_source_version": "v1.8.1",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/spf13/cobra/@v/v1.8.1.zip",
+      "archive": "github.com__spf13__cobra@v1.8.1.zip",
+      "sha256": "bf27a276f87257c93bc057309df30265a19beefc3d5fc887cbd8fc99ad35466a",
+      "notices": [
+        "github.com/spf13/cobra@v1.8.1/LICENSE.txt"
+      ],
+      "repo": "spf13/cobra",
+      "license_history": [
+        {
+          "commit": "19ec2d48d847e5ac9d076c6b1cea6f48378318d4",
+          "date": "2013-09-03T22:46:13Z",
+          "url": "https://raw.githubusercontent.com/spf13/cobra/19ec2d48d847e5ac9d076c6b1cea6f48378318d4/LICENSE.txt",
+          "sha256": "5e3400b93bbb099e83e52bab885e7441750673c21f97988ca3f1240639b63283"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:e5/vxKd/rZsfSJMUX1agtjeTDf+qv1/JdBF8gg5k9ZM=",
+      "license_family": "Apache-2.0"
+    },
+    {
+      "module": "github.com/spf13/pflag",
+      "notice_source_version": "v1.0.5",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/spf13/pflag/@v/v1.0.5.zip",
+      "archive": "github.com__spf13__pflag@v1.0.5.zip",
+      "sha256": "fc6e704f2f6a84ddcdce6de0404e5340fa20c8676181bf5d381b17888107ba84",
+      "notices": [
+        "github.com/spf13/pflag@v1.0.5/LICENSE"
+      ],
+      "repo": "spf13/pflag",
+      "license_history": [
+        {
+          "commit": "c547eeb181a682742d356a5c12e63c30cea53592",
+          "date": "2012-05-04T07:23:34Z",
+          "url": "https://raw.githubusercontent.com/spf13/pflag/c547eeb181a682742d356a5c12e63c30cea53592/LICENSE",
+          "sha256": "b8514c577c1c4b46cee454d5a882b15fa411e72c5bd7f801f241591789fce61a"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "github.com/tealeg/xlsx/v3",
+      "notice_source_version": "v3.3.13",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/github.com/tealeg/xlsx/v3/@v/v3.3.13.zip",
+      "archive": "github.com__tealeg__xlsx__v3@v3.3.13.zip",
+      "sha256": "eaa041d2fe6ce709d9c4c2b53b4c8e5d757d111876be81aa2525993d0b87c4e8",
+      "notices": [
+        "github.com/tealeg/xlsx/v3@v3.3.13/AUTHORS.txt",
+        "github.com/tealeg/xlsx/v3@v3.3.13/LICENSE"
+      ],
+      "repo": "tealeg/xlsx",
+      "license_history": [
+        {
+          "commit": "114a3f2e07808bcd56e1b0ae82dac60219eafdda",
+          "date": "2020-05-14T08:09:44Z",
+          "url": "https://raw.githubusercontent.com/tealeg/xlsx/114a3f2e07808bcd56e1b0ae82dac60219eafdda/LICENSE",
+          "sha256": "73d94b3789b5101269301b49e2f57ea4c3fa4cd4ebf4b183a7e91251ff5dd0ab"
+        },
+        {
+          "commit": "f9bc04e7de007646081f3703b9f40cd685f6215b",
+          "date": "2017-08-22T08:00:49Z",
+          "url": "https://raw.githubusercontent.com/tealeg/xlsx/f9bc04e7de007646081f3703b9f40cd685f6215b/LICENSE",
+          "sha256": "d79d426861e1e48bd75e5bf10fe7babc83076835c2c37831983ea5bb5834cafb"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:Zk1Stj11MGRnOYI1st6av/Z2lIXp/jFZomrSWSeJLmY=",
+      "license_family": "BSD-3-Clause AND MIT"
+    },
+    {
+      "module": "google.golang.org/genproto/googleapis/api",
+      "notice_source_version": "v0.0.0-20250303144028-a0af3efb3deb",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/google.golang.org/genproto/googleapis/api/@v/v0.0.0-20250303144028-a0af3efb3deb.zip",
+      "archive": "google.golang.org__genproto__googleapis__api@v0.0.0-20250303144028-a0af3efb3deb.zip",
+      "sha256": "e8ba96ae863588f8957eebdd2d46951f19e991761631ff441c5addf09648e146",
+      "notices": [
+        "google.golang.org/genproto/googleapis/api@v0.0.0-20250303144028-a0af3efb3deb/LICENSE"
+      ],
+      "repo": "googleapis/go-genproto",
+      "license_history": [
+        {
+          "commit": "9f48fed629f137e474fb7422a911dfad49e2eaae",
+          "date": "2016-07-21T10:52:44Z",
+          "url": "https://raw.githubusercontent.com/googleapis/go-genproto/9f48fed629f137e474fb7422a911dfad49e2eaae/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:p31xT4yrYrSM/G4Sn2+TNUkVhFCbG9y8itM2S6Th950=",
+      "license_family": "Apache-2.0"
+    },
+    {
+      "module": "google.golang.org/genproto/googleapis/rpc",
+      "notice_source_version": "v0.0.0-20250303144028-a0af3efb3deb",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/google.golang.org/genproto/googleapis/rpc/@v/v0.0.0-20250303144028-a0af3efb3deb.zip",
+      "archive": "google.golang.org__genproto__googleapis__rpc@v0.0.0-20250303144028-a0af3efb3deb.zip",
+      "sha256": "1d471176d306a3c852f764dce54aa049cabfad05e59fbec5e0a54cc167f3ed2e",
+      "notices": [
+        "google.golang.org/genproto/googleapis/rpc@v0.0.0-20250303144028-a0af3efb3deb/LICENSE"
+      ],
+      "repo": "googleapis/go-genproto",
+      "license_history": [
+        {
+          "commit": "9f48fed629f137e474fb7422a911dfad49e2eaae",
+          "date": "2016-07-21T10:52:44Z",
+          "url": "https://raw.githubusercontent.com/googleapis/go-genproto/9f48fed629f137e474fb7422a911dfad49e2eaae/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:TLPQVbx1GJ8VKZxz52VAxl1EBgKXXbTiU9Fc5fZeLn4=",
+      "license_family": "Apache-2.0"
+    },
+    {
+      "module": "google.golang.org/grpc",
+      "notice_source_version": "v1.71.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/google.golang.org/grpc/@v/v1.71.0.zip",
+      "archive": "google.golang.org__grpc@v1.71.0.zip",
+      "sha256": "7d05a94d47212b4a94bcb1e983422d0b05a50cb3c4dc19302072c552f5e81acb",
+      "notices": [
+        "google.golang.org/grpc@v1.71.0/AUTHORS",
+        "google.golang.org/grpc@v1.71.0/LICENSE",
+        "google.golang.org/grpc@v1.71.0/NOTICE.txt"
+      ],
+      "repo": "grpc/grpc-go",
+      "license_history": [
+        {
+          "commit": "306d7d084b0c626e49d3a60ac008e52ad961edee",
+          "date": "2017-06-21T17:20:47Z",
+          "url": "https://raw.githubusercontent.com/grpc/grpc-go/306d7d084b0c626e49d3a60ac008e52ad961edee/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "commit": "ea14354640ffa6accecba8a154c632989eff8479",
+          "date": "2017-06-19T17:16:33Z",
+          "url": "https://raw.githubusercontent.com/grpc/grpc-go/ea14354640ffa6accecba8a154c632989eff8479/LICENSE",
+          "sha256": "635ae00351639c627b1da342f062713c31c527cd1b32423e362c6aef694a0271"
+        },
+        {
+          "commit": "3c7e64ff7fec932311650d00c631c2edf7c2551b",
+          "date": "2017-06-08T12:37:28Z",
+          "url": "https://raw.githubusercontent.com/grpc/grpc-go/3c7e64ff7fec932311650d00c631c2edf7c2551b/LICENSE",
+          "sha256": "94997e0e4283b98fcc37d43491f3541f922989505dfb4939228bd8072c65cd61"
+        },
+        {
+          "commit": "c463038273fef1f095f72184a6775f4880dd267c",
+          "date": "2015-02-06T01:14:05Z",
+          "url": "https://raw.githubusercontent.com/grpc/grpc-go/c463038273fef1f095f72184a6775f4880dd267c/LICENSE",
+          "sha256": "af1c246b8eb8b2d2ee3f1471247569d7f35cefff40e9b967d563622bb04c1e69"
+        },
+        {
+          "commit": "5d8e5aad40bedb696205b96b786f1d0e1326b3f8",
+          "date": "2021-09-14T14:15:02Z",
+          "url": "https://raw.githubusercontent.com/grpc/grpc-go/5d8e5aad40bedb696205b96b786f1d0e1326b3f8/NOTICE.txt",
+          "sha256": "693ff28ec216d5112ac1bbfe64ef539005867d1c7bd427b57d579683293b947f"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:kF77BGdPTQ4/JZWMlb9VpJ5pa25aqvVqogsxNHHdeBg=",
+      "license_family": "Apache-2.0"
+    },
+    {
+      "module": "google.golang.org/protobuf",
+      "notice_source_version": "v1.36.5",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/google.golang.org/protobuf/@v/v1.36.5.zip",
+      "archive": "google.golang.org__protobuf@v1.36.5.zip",
+      "sha256": "bef3555844d24e73f06b2c2e653bfd4ab4e3c79f4150def6ee9be45f0e2e81b5",
+      "notices": [
+        "google.golang.org/protobuf@v1.36.5/LICENSE",
+        "google.golang.org/protobuf@v1.36.5/PATENTS"
+      ],
+      "repo": "protocolbuffers/protobuf-go",
+      "license_history": [
+        {
+          "commit": "ec3202bcd4b766673bdfa416626e85374fe0ca0c",
+          "date": "2018-08-07T22:39:48Z",
+          "url": "https://raw.githubusercontent.com/protocolbuffers/protobuf-go/ec3202bcd4b766673bdfa416626e85374fe0ca0c/LICENSE",
+          "sha256": "4835612df0098ca95f8e7d9e3bffcb02358d435dbb38057c844c99d7f725eb20"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:tPhr+woSbjfYvY6/GPufUoYizxw1cF/yFoxJ2fmpwlM=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "golang.org/x/net",
+      "notice_source_version": "v0.36.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/golang.org/x/net/@v/v0.36.0.zip",
+      "archive": "golang.org__x__net@v0.36.0.zip",
+      "sha256": "e823a351657b349cd8a705079778769534d90a5c3a6c7caed174a79608257d12",
+      "notices": [
+        "golang.org/x/net@v0.36.0/LICENSE",
+        "golang.org/x/net@v0.36.0/PATENTS"
+      ],
+      "repo": "golang/net",
+      "license_history": [
+        {
+          "commit": "032e4e4358b0ef66f5295d9a78bda41e4d6d399b",
+          "date": "2024-07-16T16:05:10Z",
+          "url": "https://raw.githubusercontent.com/golang/net/032e4e4358b0ef66f5295d9a78bda41e4d6d399b/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "commit": "e169218972b782c2caf700aab84ad9d7896b18e7",
+          "date": "2012-03-17T04:20:00Z",
+          "url": "https://raw.githubusercontent.com/golang/net/e169218972b782c2caf700aab84ad9d7896b18e7/LICENSE",
+          "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:vWF2fRbw4qslQsQzgFqZff+BItCvGFQqKzKIzx1rmoA=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "golang.org/x/sys",
+      "notice_source_version": "v0.30.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/golang.org/x/sys/@v/v0.30.0.zip",
+      "archive": "golang.org__x__sys@v0.30.0.zip",
+      "sha256": "f5214bfec98f00e5432da68bbece03e98600fa41594ed026556cbde8fcb6f7c9",
+      "notices": [
+        "golang.org/x/sys@v0.30.0/LICENSE",
+        "golang.org/x/sys@v0.30.0/PATENTS"
+      ],
+      "repo": "golang/sys",
+      "license_history": [
+        {
+          "commit": "dce4e64e6654a3553efaf67a1acbdd5865f621ba",
+          "date": "2024-07-16T16:11:15Z",
+          "url": "https://raw.githubusercontent.com/golang/sys/dce4e64e6654a3553efaf67a1acbdd5865f621ba/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "commit": "b38d45f7ff30da05839dfc1ac9f5f7241049f427",
+          "date": "2012-03-17T04:20:58Z",
+          "url": "https://raw.githubusercontent.com/golang/sys/b38d45f7ff30da05839dfc1ac9f5f7241049f427/LICENSE",
+          "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:QjkSwP/36a20jFYWkSue1YwXzLmsV5Gfq7Eiy72C1uc=",
+      "license_family": "BSD-3-Clause"
+    },
+    {
+      "module": "golang.org/x/text",
+      "notice_source_version": "v0.22.0",
+      "runtime_version": null,
+      "url": "https://proxy.golang.org/golang.org/x/text/@v/v0.22.0.zip",
+      "archive": "golang.org__x__text@v0.22.0.zip",
+      "sha256": "939cb4c202aa8fa302f2ba6f9d29165ce82fce9c665d9a1a0bb0d9e51b79e6f5",
+      "notices": [
+        "golang.org/x/text@v0.22.0/LICENSE",
+        "golang.org/x/text@v0.22.0/PATENTS"
+      ],
+      "repo": "golang/text",
+      "license_history": [
+        {
+          "commit": "ae0cf96bbcd9fd2e2247254946b3509c3b6fccff",
+          "date": "2024-07-16T16:08:04Z",
+          "url": "https://raw.githubusercontent.com/golang/text/ae0cf96bbcd9fd2e2247254946b3509c3b6fccff/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "commit": "377f66efdb2cf7a0897e14da40ade20eb5ae432e",
+          "date": "2013-03-06T21:57:33Z",
+          "url": "https://raw.githubusercontent.com/golang/text/377f66efdb2cf7a0897e14da40ade20eb5ae432e/LICENSE",
+          "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067"
+        }
+      ],
+      "basis": "observed binary package; permissive-notice reference, not linked-version assertion",
+      "go_sum": "h1:bofq7m3/HAFvbF51jz3Q9wLg3jkvSPuiZu/pD1XwgtM=",
+      "license_family": "BSD-3-Clause"
+    }
+  ],
+  "base_sources": [
+    {
+      "archive": "busybox-1.37.0.tar.bz2",
+      "url": "https://busybox.net/downloads/busybox-1.37.0.tar.bz2",
+      "sha256": "3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4",
+      "kind": "source-busybox"
+    },
+    {
+      "archive": "docker-library-busybox-amd64.tar.gz",
+      "url": "https://codeload.github.com/docker-library/busybox/tar.gz/70ce0fb98bee360bbcce132660d727bf6ce55a99",
+      "sha256": "5a499a163b60aff185257ad7236b682738aa43fe85ebb7232081711b0dbd6fee",
+      "kind": "source-build-recipes",
+      "architecture": "amd64",
+      "members": [
+        "LICENSE",
+        "latest-1/musl/Dockerfile",
+        "latest-1/musl/Dockerfile.builder",
+        ".patches/no-cbq.patch",
+        ".patches/hackfix-to-disable-HW-acceleration-for-MD5-SHA1-on-x86-1.37.patch",
+        ".patches/sha1_process_block64_shaNI-musl.patch"
+      ]
+    },
+    {
+      "archive": "docker-library-busybox-arm64.tar.gz",
+      "url": "https://codeload.github.com/docker-library/busybox/tar.gz/0436ae6a521e9e1bf3a524b0c3062a68d2af96e0",
+      "sha256": "d5f694fa7c14a3b5d0bb40d1b6031764395203b000b52a8b095679a6f2c9b867",
+      "kind": "source-build-recipes",
+      "architecture": "arm64",
+      "members": [
+        "LICENSE",
+        "latest-1/musl/Dockerfile",
+        "latest-1/musl/Dockerfile.builder",
+        ".patches/no-cbq.patch",
+        ".patches/hackfix-to-disable-HW-acceleration-for-MD5-SHA1-on-x86-1.37.patch",
+        ".patches/sha1_process_block64_shaNI-musl.patch"
+      ]
+    },
+    {
+      "archive": "getconf.c",
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/48b16204aeeda5bc1f87e49c6b8e23d9abb07c73/main/musl/getconf.c",
+      "sha256": "d87d0cbb3690ae2c5d8cc218349fd8278b93855dd625deaf7ae50e320aad247c",
+      "kind": "notice-source"
+    },
+    {
+      "archive": "musl-1.2.5.tar.gz",
+      "url": "https://musl.libc.org/releases/musl-1.2.5.tar.gz",
+      "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4",
+      "kind": "permissive-notice-reference"
+    },
+    {
+      "archive": "tzdata2025b.tar.gz",
+      "url": "https://data.iana.org/time-zones/releases/tzdata2025b.tar.gz",
+      "sha256": "11810413345fc7805017e27ea9fa4885fd74cd61b2911711ad038f5d28d71474",
+      "kind": "public-domain-notice-reference"
+    },
+    {
+      "archive": "buildroot-COPYING",
+      "url": "https://raw.githubusercontent.com/buildroot/buildroot/2026.05.1/COPYING",
+      "sha256": "9755181e27175cb3510b4da8629caa406fb355a19aa8e7d55f06bf8ab33323c4",
+      "kind": "notice"
+    },
+    {
+      "archive": "psmithuk-xlsx-LICENSE",
+      "url": "https://raw.githubusercontent.com/psmithuk/xlsx/f101c53f4a4c57566ff5144d0ed9d95af51e4fe1/LICENSE",
+      "sha256": "e7ccae3e01f0d4c087a51b321f42830fe6462aaeb7e345e7b1b37294ebe2f1ce",
+      "kind": "notice"
+    },
+    {
+      "archive": "buildroot-system__device_table.txt",
+      "url": "https://raw.githubusercontent.com/buildroot/buildroot/2026.05.1/system/device_table.txt",
+      "sha256": "0e38e39031b39ed9bac4692c9bfacf6204e236ce5f6e8d10e279008b6edd7dfe",
+      "kind": "notice-source"
+    },
+    {
+      "archive": "buildroot-system__skeleton__etc__group",
+      "url": "https://raw.githubusercontent.com/buildroot/buildroot/2026.05.1/system/skeleton/etc/group",
+      "sha256": "f55824ead3d8f552bc22020211a8b181af4506e4fbba20389114e46c1cefcd9c",
+      "kind": "notice-source"
+    },
+    {
+      "archive": "buildroot-system__skeleton__etc__passwd",
+      "url": "https://raw.githubusercontent.com/buildroot/buildroot/2026.05.1/system/skeleton/etc/passwd",
+      "sha256": "466afb852e38d454b87ab903abd189ea4541bd79bdf15449ccce7460af94d711",
+      "kind": "notice-source"
+    },
+    {
+      "archive": "buildroot-system__skeleton__etc__shadow",
+      "url": "https://raw.githubusercontent.com/buildroot/buildroot/2026.05.1/system/skeleton/etc/shadow",
+      "sha256": "4d3646852973779534ff06618963e589a7231ff0e0ec7bf2d1b8723ef48d561c",
+      "kind": "notice-source"
+    }
+  ],
+  "review_files": {
+    "notice-review.md": "e173f0848182612ce199118bbdd8d17fa06c2f7bd06b3568255a7906162c85f4",
+    "binary-providers.json": "3f8c1e3e607f1406acf9c80e912a3f12fa6d854e7cf851a9d8bf874a69303ce3"
+  }
+}
