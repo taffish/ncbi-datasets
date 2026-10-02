@@ -6,7 +6,7 @@ for TAFFISH. It fixes the client binaries, not the contents of NCBI's live servi
 Package identity:
 
 - command: `taf-ncbi-datasets`; kind: `tool`
-- version: `18.37.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.37.0-r1`
+- version: `18.38.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.38.0-r1`
 - default command: `datasets`; companion: `dataformat`
 - native platforms: `linux/amd64`, `linux/arm64`
 - packaging license: Apache-2.0; NCBI code: Public Domain / United States Government Work
@@ -16,8 +16,8 @@ Package identity:
 The two unmodified official Linux binaries query/download selected NCBI data
 packages, rehydrate dehydrated packages, and format local metadata as TSV or
 XLSX. `dataformat catalog` also inspects package inventories.
-[Upstream v18.37.0](https://github.com/ncbi/datasets/releases/tag/v18.37.0) corrects
-type-material filtering and includes service maintenance. No new executable or
+[Upstream v18.38.0](https://github.com/ncbi/datasets/releases/tag/v18.38.0) adds
+`datasets summary --pretty` for indented JSON display. No new executable or
 local model/database was added. The app does not modify upstream algorithms.
 
 ## Scope and Container Contents
@@ -37,7 +37,7 @@ No GPU, service port or display setup is required.
 ## Install and Use
 
 Install with the normal TAFFISH Hub command after this candidate is published.
-The pinned install command is `taf install ncbi-datasets 18.37.0-r1`.
+The pinned install command is `taf install ncbi-datasets 18.38.0-r1`.
 Maintainers can run `taf check` and `taf build` in the source checkout;
 installed users run the wrapper directly:
 
@@ -50,7 +50,16 @@ taf-ncbi-datasets dataformat excel genome --inputfile human.jsonl --fields acces
 taf-ncbi-datasets dataformat tsv sequence --list-templates
 ```
 
+For human-readable query output add `--pretty` to a `datasets summary` command.
+Keep machine-readable `--as-json-lines` output **without** `--pretty` for
+`dataformat`: pretty printing expands records across lines. The upstream pretty
+implementation buffers the response, so prefer ordinary output for large queries.
+This is upstream behavior; the wrapper does not transform the data.
+
 For existing packages use `--package ncbi_dataset.zip` instead of `--inputfile`.
+With the current TAFFISH shell argument expansion, paths containing spaces need
+literal inner quotes, for example `--inputfile "'input with spaces.jsonl'"`.
+Using a simple filename avoids this core-level quoting limitation.
 Use a new output directory/name: downloads and workbook commands can overwrite
 files. `--force` controls dataformat's type-check prompt, not installation safety.
 
@@ -135,9 +144,9 @@ dummy value; no real credential is required or recorded.
 
 ## Reproducibility and Build Design
 
-- tag: `v18.37.0`; commit: `c641ac110f9f4d756c67e678f646bb1b711b1dd3`
-- amd64 archive SHA256: `f553860753712e6628e4f0f45a1388f9ad27e6f9d5d07549d1c87cd208955f4b`
-- arm64 archive SHA256: `1c8784b02d42d99194f2d82a2636377f934ba8f414d1eb848210b39fb9cc6004`
+- tag: `v18.38.0`; commit: `719e1c231c9c61629bb9870800525bec9dc13714`
+- amd64 archive SHA256: `47291ece030d58e56892fd780092a8dc4c6e8380d1977ce42b32d66ade42f9cf`
+- arm64 archive SHA256: `ac14d60a8d87baf5cef0fb0ddb5798944ccca581644d2ba749c9295f167ad494`
 - BusyBox `1.37.0-musl` final base and Debian builder are digest-pinned in Dockerfile
 - context: app root, `docker build -f docker/Dockerfile .`, matching canonical Action
 
@@ -147,7 +156,7 @@ the final image. Native build self-checks use exact identity, ordinary help and
 tiny non-rendering TSV transformations. Cross-builds check files/provenance
 without executing target binaries; native runtime evidence is a separate gate.
 
-`datasets --version` reports exactly `datasets version: 18.37.0`. Official
+`datasets --version` reports exactly `datasets version: 18.38.0`. Official
 `dataformat version` still prints `undefined`; its identity is tied to the same
 verified archive. The wrapper does not manufacture a version string.
 
@@ -178,23 +187,46 @@ Any subsequently identified component or concrete unmet obligation requires
 renewed review. The unlicensed `bou.ke/monkey` source is excluded: it is a public
 module declaration without NCBI imports or observed binary linkage.
 
-The new notice-bearing images passed native amd64/arm64 builds, 154 exact smoke
-checks (22 items on seven normal/read-only/SIF routes), 76 real-wrapper checks,
-44 notice-integrity positive/negative probes, 22 collector unit tests and four
-error-code/diagnostic regressions. Docker and Podman passed normal and read-only
-root checks on native amd64; Apptainer passed with an actual read-only amd64 SIF.
-Native arm64 passed Podman normal/read-only and wrapper checks. Docker arm64 and
-Apptainer arm64 were not separately validated: both evidence axes are covered,
-with no app-specific runtime arguments, GUI/GPU or architecture-coupled mounts.
+This release passed native amd64/arm64 app-root builds and 225 fresh/offline exact
+probes: combined command existence, 17 individual existence probes and seven tests
+on nine normal/read-only/SIF routes. Docker and Podman passed normal/read-only
+checks on both native platforms; Apptainer passed using the actual read-only
+amd64 SIF converted from the same candidate OCI. Arm64 Apptainer was not separately
+validated; no app-specific architecture/backend arguments, GPU or GUI couple it
+to the already-covered platform and backend axes.
 
-Final image IDs: amd64 `1359ab34…` (118,405,483 bytes), arm64 `52f07198…`
-(117,461,945 bytes); amd64 SIF SHA256 `cda06866…`. About 73 MiB is retained
-notice/source material, including original Go and library archives. These are
-intentional distribution materials, not disposable download caches. Builder
-Python, compilers and temporary download directories are absent from runtime.
-Historical failed and partial-notice receipts remain in Hub maintainer evidence;
-they are not relabelled as validation of these new images. Live production
-downloads and complete scientific workflows remain outside these offline tests.
+The 100 real-wrapper checks cover five routes, including ordinary users, stdin,
+space-containing filenames, actual read-only shared input binds, denied writes,
+host output ownership, TSV/XLSX and dummy API-key forwarding. The 55 notice probes,
+22 collector tests and five failure/diagnostic routes passed. New pretty tests use
+only a synthetic loopback API under forced network isolation; they compare JSON/JSONL
+after removing formatting whitespace **outside strings only**, preserving spaces,
+quotes and backslash escapes inside strings. This small BusyBox awk comparator is
+not a general JSON parser or semantic canonicalizer. Indentation and nonzero errors
+are also checked. No live NCBI result is used as an offline smoke fixture.
+
+The comparator has 10 regression tests, rerun against the actual image/SIF on five
+backend/platform routes (50 tests). Another 60 container probes include normal
+controls and 40 confirmed content mutations across JSON and JSONL: changed value
+spaces, key spaces, quoted text and backslashes must fail. The original all-whitespace
+comparison's false positive is retained in the maintainer audit, not counted as PASS.
+
+Three additional native-amd64 real-wrapper requests retrieved one public reference
+genome's metadata over HTTPS, one per backend, including `--pretty`. The first
+Apptainer attempt timed out because a diagnostic-only bind restriction removed
+DNS configuration; normal wrapper networking passed. This is a small connectivity
+check, not a production sequence download or a service-availability guarantee.
+
+Measured image sizes are 118,581,211 bytes (amd64) and 117,565,817 bytes (arm64).
+The maintainer evidence retains full image/SIF identities, source-bound receipts,
+failed diagnostic attempts and independent result aggregation. Local candidate
+validation does not claim published Action/GHCR/Index acceptance.
+
+About 73 MiB of retained notice/source material includes original Go and library
+archives. These are intentional distribution materials, not disposable download
+caches. Builder Python, compilers and temporary download directories are absent
+from runtime. Live production downloads and complete scientific workflows remain
+outside the offline tests.
 
 ## Troubleshooting
 
@@ -206,6 +238,9 @@ downloads and complete scientific workflows remain outside these offline tests.
   package; dehydrated archives are not complete downloads.
 - Network/rate-limit error: follow site and NCBI service guidance. An API key
   does not guarantee access; do not expose it in logs or shared files.
+- Apptainer online queries: use normal wrapper networking. Diagnostic
+  `--no-mount bind-paths` can suppress host DNS configuration; it is appropriate
+  for isolated offline checks, not a required runtime option for this app.
 
 ## License and Citation
 

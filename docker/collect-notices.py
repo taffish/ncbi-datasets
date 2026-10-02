@@ -57,7 +57,7 @@ def zip_contents(data, module, version, expected_h1):
 
 
 def validate_lock(lock, source_dir):
-    if lock['schema'] != 2 or lock['ncbi_version'] != '18.37.0':
+    if lock['schema'] != 2 or lock['ncbi_version'] != '18.38.0':
         raise ValueError('unsupported lock identity')
     if lock['binary_sbom_complete'] is not False:
         raise ValueError('cannot claim complete binary SBOM')

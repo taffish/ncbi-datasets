@@ -1,4 +1,4 @@
-ncbi-datasets 18.37.0-r1
+ncbi-datasets 18.38.0-r1
 
 Purpose:
   Query NCBI metadata with datasets; convert existing JSON Lines or package
@@ -6,6 +6,7 @@ Purpose:
 
 Common tasks:
   taf-ncbi-datasets datasets summary genome accession GCF_000001405.40 --as-json-lines > human.jsonl
+  taf-ncbi-datasets datasets summary genome accession GCF_000001405.40 --pretty
   taf-ncbi-datasets dataformat tsv genome --inputfile human.jsonl --fields accession,organism-name --force > human.tsv
   taf-ncbi-datasets dataformat tsv genome --package ncbi_dataset.zip --fields accession,organism-name
   taf-ncbi-datasets dataformat excel genome --package ncbi_dataset.zip --outputfile report.xlsx
@@ -16,6 +17,9 @@ Inputs and outputs:
   Query inputs: an accession/identifier or an upstream-supported identifier list.
   Local inputs: NCBI JSON Lines reports or complete NCBI Datasets zip packages.
   Outputs: JSON/JSONL metadata, selected TSV fields, or an XLSX workbook.
+  --pretty is for display; omit it from --as-json-lines input for dataformat.
+  Large queries should avoid --pretty because upstream buffers the response.
+  For spaces use literal inner quotes: --inputfile "'input with spaces.jsonl'".
   Work in a writable directory. Current-directory files are bound by the wrapper;
   paths elsewhere require an explicit bind. Use new output names to avoid overwrite.
 

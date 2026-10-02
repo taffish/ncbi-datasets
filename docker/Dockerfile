@@ -2,10 +2,10 @@ FROM debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe6
 
 ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.37.0
-ARG NCBI_DATASETS_COMMIT=c641ac110f9f4d756c67e678f646bb1b711b1dd3
-ARG NCBI_DATASETS_AMD64_SHA256=f553860753712e6628e4f0f45a1388f9ad27e6f9d5d07549d1c87cd208955f4b
-ARG NCBI_DATASETS_ARM64_SHA256=1c8784b02d42d99194f2d82a2636377f934ba8f414d1eb848210b39fb9cc6004
+ARG NCBI_DATASETS_VERSION=18.38.0
+ARG NCBI_DATASETS_COMMIT=719e1c231c9c61629bb9870800525bec9dc13714
+ARG NCBI_DATASETS_AMD64_SHA256=47291ece030d58e56892fd780092a8dc4c6e8380d1977ce42b32d66ade42f9cf
+ARG NCBI_DATASETS_ARM64_SHA256=ac14d60a8d87baf5cef0fb0ddb5798944ccca581644d2ba749c9295f167ad494
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -87,6 +87,8 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certifi
 COPY --from=builder /opt/ncbi-datasets /opt/ncbi-datasets
 COPY docker/upstream-LICENSE.md /opt/ncbi-datasets/share/licenses/ncbi-datasets/LICENSE.md
 COPY docker/ncbi-datasets-smoke.sh /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh
+COPY docker/ncbi-datasets-pretty-smoke.sh /opt/ncbi-datasets/share/testdata/ncbi-datasets-pretty-smoke.sh
+COPY docker/ncbi-datasets-json-compact.awk /opt/ncbi-datasets/share/testdata/ncbi-datasets-json-compact.awk
 COPY docker/check-notices.sh /opt/ncbi-datasets/share/testdata/check-notices.sh
 
 RUN set -eux; \
@@ -94,12 +96,13 @@ RUN set -eux; \
     ln -s /opt/ncbi-datasets/bin/datasets /usr/local/bin/datasets; \
     ln -s /opt/ncbi-datasets/bin/dataformat /usr/local/bin/dataformat; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh; \
+    chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-pretty-smoke.sh; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/check-notices.sh; \
     /opt/ncbi-datasets/share/testdata/check-notices.sh; \
     test -n "${BUILDARCH}"; \
     test -n "${TARGETARCH}"; \
     if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
-      datasets --version 2>&1 | grep -Fx "datasets version: 18.37.0" >/dev/null; \
+      datasets --version 2>&1 | grep -Fx "datasets version: 18.38.0" >/dev/null; \
       dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
       datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
       dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \

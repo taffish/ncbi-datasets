@@ -1,0 +1,6 @@
+{
+  "artifact": "taf-ncbi-datasets-v18.38.0-r1",
+  "schema": "taffish.build/v1",
+  "source_sha256": "df97d54754424630637edc05fcd9fb870d69873c84d6e0969fb5186d166e4908",
+  "wrapper_sha256": "ee16629fbce3f266c9b8b6872288516ca789fef319c822ebb877e0abb352fcd4"
+}

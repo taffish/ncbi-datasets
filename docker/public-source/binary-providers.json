@@ -1,11 +1,11 @@
 {
-  "upstream_version": "18.37.0",
+  "upstream_version": "18.38.0",
   "method": "union of embedded source paths and DWARF compile units; not complete SBOM",
   "binaries": [
     {
       "architecture": "amd64",
       "command": "datasets",
-      "sha256": "f9f8af0eed1edac2c636c785a52330529dde7b5d91f7cff23cda5ca6d2f1dfb6",
+      "sha256": "d893f53fb122c0c815542711aaa7b404cc46ef7f8fdcde416246a69d8507ff81",
       "go_version": "go1.23.4 X:nocoverageredesign",
       "module_info": "",
       "embedded_external_providers": [
@@ -54,7 +54,7 @@
     {
       "architecture": "amd64",
       "command": "dataformat",
-      "sha256": "63a1147f1d680d448cd20e732ba72c0e89db239c03a38caed6e02346158b4b74",
+      "sha256": "112147244e3f87eeb43c5f1b725d6b7dfc1fc5821f06879c9c13b9dd09cff616",
       "go_version": "go1.23.4 X:nocoverageredesign",
       "module_info": "",
       "embedded_external_providers": [
@@ -201,7 +201,7 @@
     {
       "architecture": "arm64",
       "command": "datasets",
-      "sha256": "237e0fc2b95502bad8b3a74d2d25875f842e36ca3ab00909469e484c7d353b88",
+      "sha256": "15d5521d6bd3b726002946347b5331365c79a655621452ce6873e4a410f234e0",
       "go_version": "go1.23.4 X:nocoverageredesign",
       "module_info": "",
       "embedded_external_providers": [
@@ -250,7 +250,7 @@
     {
       "architecture": "arm64",
       "command": "dataformat",
-      "sha256": "35ab4a4b1f2acd743bf441eb9097ff45147b8f1ba58c4f7f0ed1eb6ac9ea4ec4",
+      "sha256": "20c8518645394320f0bf9341f0ca6494ee5ff164cff9d5691a76c477761be3e0",
       "go_version": "go1.23.4 X:nocoverageredesign",
       "module_info": "",
       "embedded_external_providers": [

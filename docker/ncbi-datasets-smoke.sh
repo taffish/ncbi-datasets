@@ -24,7 +24,7 @@ trap finish EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 
-# 每个功能 smoke 同时检查固定已知告知；不代表 dataformat 的未知来源已闭合。
+# 每个功能 smoke 同时检查本版固定告知材料；完整性检查不冒充完整二进制 SBOM。
 /opt/ncbi-datasets/share/testdata/check-notices.sh >/dev/null
 
 new_tmp() {

@@ -1,4 +1,4 @@
-# NCBI Datasets 18.37.0：第三方告知复核
+# NCBI Datasets 18.38.0：第三方告知复核
 
 这是固定候选的封装告知审查，不是完整二进制 SBOM，也不是法律保证。
 上游两个程序原样分发；包内的 NCBI Public Domain 告知只覆盖 NCBI 自有部分，
@@ -19,6 +19,14 @@
 - 对各 provider 根许可的公开默认分支历史检查截止 2026-09-09；更名前路径也检查
   （grpc-gateway 的 LICENSE.txt）。历史原文/commit/digest 均保留。参考源码版本只用于
   定位告知文本；实际 dataformat 依赖版本未知，字段保持 null，不能用于漏洞版本判断。
+
+## 本次更新差异复核（2026-09-29）
+
+18.38.0 四个官方二进制重新提取 build-info、嵌入源码路径与 DWARF；provider 集合
+逐项与 18.37.0 相同，Go 版本仍为 1.23.4，模块表仍为空。固定新 commit 的公开
+`go.mod`/`go.sum` 字节不变；release diff 只涉及 summary pretty 与 API schema，
+NCBI 告知法律文本未变。沿用已保留的原始许可参考，不将新的二进制哈希当作完整
+SBOM；本版身份与上述差异证据由 `binary-providers.json` 和 Hub 发布回执固定。
 
 ## dataformat 许可义务覆盖
 
