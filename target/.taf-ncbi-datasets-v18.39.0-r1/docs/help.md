@@ -1,4 +1,4 @@
-ncbi-datasets 18.38.0-r1
+ncbi-datasets 18.39.0-r1
 
 Purpose:
   Query NCBI metadata with datasets; convert existing JSON Lines or package

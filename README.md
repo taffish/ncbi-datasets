@@ -6,7 +6,7 @@ for TAFFISH. It fixes the client binaries, not the contents of NCBI's live servi
 Package identity:
 
 - command: `taf-ncbi-datasets`; kind: `tool`
-- version: `18.38.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.38.0-r1`
+- version: `18.39.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.39.0-r1`
 - default command: `datasets`; companion: `dataformat`
 - native platforms: `linux/amd64`, `linux/arm64`
 - packaging license: Apache-2.0; NCBI code: Public Domain / United States Government Work
@@ -16,9 +16,11 @@ Package identity:
 The two unmodified official Linux binaries query/download selected NCBI data
 packages, rehydrate dehydrated packages, and format local metadata as TSV or
 XLSX. `dataformat catalog` also inspects package inventories.
-[Upstream v18.38.0](https://github.com/ncbi/datasets/releases/tag/v18.38.0) adds
-`datasets summary --pretty` for indented JSON display. No new executable or
-local model/database was added. The app does not modify upstream algorithms.
+[Upstream v18.39.0](https://github.com/ncbi/datasets/releases/tag/v18.39.0) is a
+maintenance release for service performance and reliability. Its public source
+diff updates the OpenAPI schemas; the existing `summary --pretty` interface is
+retained. No new executable or local model/database was added. This app keeps
+both official binaries unmodified.
 
 ## Scope and Container Contents
 
@@ -37,7 +39,7 @@ No GPU, service port or display setup is required.
 ## Install and Use
 
 Install with the normal TAFFISH Hub command after this candidate is published.
-The pinned install command is `taf install ncbi-datasets 18.38.0-r1`.
+The pinned install command is `taf install ncbi-datasets 18.39.0-r1`.
 Maintainers can run `taf check` and `taf build` in the source checkout;
 installed users run the wrapper directly:
 
@@ -144,9 +146,9 @@ dummy value; no real credential is required or recorded.
 
 ## Reproducibility and Build Design
 
-- tag: `v18.38.0`; commit: `719e1c231c9c61629bb9870800525bec9dc13714`
-- amd64 archive SHA256: `47291ece030d58e56892fd780092a8dc4c6e8380d1977ce42b32d66ade42f9cf`
-- arm64 archive SHA256: `ac14d60a8d87baf5cef0fb0ddb5798944ccca581644d2ba749c9295f167ad494`
+- tag: `v18.39.0`; commit: `488962028aab2a1bab244dd35def300783cebf69`
+- amd64 archive SHA256: `2fe85fd3d0b5651357e3e6328d8d6abe8c82ea0ffaea331b703f56fe050f7297`
+- arm64 archive SHA256: `f3c3dcc87652097027d11c726a02abfe556423a2ab8683e924784a98d271f80b`
 - BusyBox `1.37.0-musl` final base and Debian builder are digest-pinned in Dockerfile
 - context: app root, `docker build -f docker/Dockerfile .`, matching canonical Action
 
@@ -156,7 +158,7 @@ the final image. Native build self-checks use exact identity, ordinary help and
 tiny non-rendering TSV transformations. Cross-builds check files/provenance
 without executing target binaries; native runtime evidence is a separate gate.
 
-`datasets --version` reports exactly `datasets version: 18.38.0`. Official
+`datasets --version` reports exactly `datasets version: 18.39.0`. Official
 `dataformat version` still prints `undefined`; its identity is tied to the same
 verified archive. The wrapper does not manufacture a version string.
 
@@ -187,46 +189,30 @@ Any subsequently identified component or concrete unmet obligation requires
 renewed review. The unlicensed `bou.ke/monkey` source is excluded: it is a public
 module declaration without NCBI imports or observed binary linkage.
 
-This release passed native amd64/arm64 app-root builds and 225 fresh/offline exact
-probes: combined command existence, 17 individual existence probes and seven tests
-on nine normal/read-only/SIF routes. Docker and Podman passed normal/read-only
-checks on both native platforms; Apptainer passed using the actual read-only
-amd64 SIF converted from the same candidate OCI. Arm64 Apptainer was not separately
-validated; no app-specific architecture/backend arguments, GPU or GUI couple it
-to the already-covered platform and backend axes.
+This candidate was rebuilt from the app-root context on native Linux amd64 and
+arm64. Docker/Podman normal and read-only-root probes passed on both platforms;
+the same amd64 OCI was converted to a real read-only Apptainer SIF and passed
+clean/contained offline probes. All 225 exact probes and 100 real-wrapper checks
+passed, including ordinary-user outputs and read-only shared inputs. Additional
+coverage includes 60 output/failure-injection cases, 55 notice-integrity checks,
+50 JSON-compaction tests, five original-exit diagnostics and 22 collector unit
+tests. The final images are 118,601,156 bytes (amd64) and 117,572,234 bytes (arm64).
 
-The 100 real-wrapper checks cover five routes, including ordinary users, stdin,
-space-containing filenames, actual read-only shared input binds, denied writes,
-host output ownership, TSV/XLSX and dummy API-key forwarding. The 55 notice probes,
-22 collector tests and five failure/diagnostic routes passed. New pretty tests use
-only a synthetic loopback API under forced network isolation; they compare JSON/JSONL
-after removing formatting whitespace **outside strings only**, preserving spaces,
-quotes and backslash escapes inside strings. This small BusyBox awk comparator is
-not a general JSON parser or semantic canonicalizer. Indentation and nonzero errors
-are also checked. No live NCBI result is used as an offline smoke fixture.
-
-The comparator has 10 regression tests, rerun against the actual image/SIF on five
-backend/platform routes (50 tests). Another 60 container probes include normal
-controls and 40 confirmed content mutations across JSON and JSONL: changed value
-spaces, key spaces, quoted text and backslashes must fail. The original all-whitespace
-comparison's false positive is retained in the maintainer audit, not counted as PASS.
-
-Three additional native-amd64 real-wrapper requests retrieved one public reference
-genome's metadata over HTTPS, one per backend, including `--pretty`. The first
-Apptainer attempt timed out because a diagnostic-only bind restriction removed
-DNS configuration; normal wrapper networking passed. This is a small connectivity
-check, not a production sequence download or a service-availability guarantee.
-
-Measured image sizes are 118,581,211 bytes (amd64) and 117,565,817 bytes (arm64).
-The maintainer evidence retains full image/SIF identities, source-bound receipts,
-failed diagnostic attempts and independent result aggregation. Local candidate
-validation does not claim published Action/GHCR/Index acceptance.
+Small normal-network metadata queries passed through all three amd64 wrappers
+without an API key. ARM64 Apptainer was not separately validated; it adds no
+known architecture/backend-specific mount, device or service coupling here.
+Production sequence downloads, real administrator/site deployment, complete
+scientific workflows and future live-service availability are not proved by
+these checks. Local native builds also do not guarantee a future GitHub runner's
+network availability. Candidate receipts are in the maintainer handoff; these
+are new 18.39.0-r1 results, not inherited 18.38.0-r1 passes.
 
 About 73 MiB of retained notice/source material includes original Go and library
 archives. These are intentional distribution materials, not disposable download
 caches. Builder Python, compilers and temporary download directories are absent
-from runtime. Live production downloads and complete scientific workflows remain
-outside the offline tests.
+from runtime. Fixed URLs and hashes identify expected bytes but cannot guarantee
+future availability; the builder's Debian APT repository is live. Dockerfile
+comments describe investigation and safe recovery/update boundaries.
 
 ## Troubleshooting
 

@@ -2,13 +2,16 @@ FROM debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe6
 
 ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.38.0
-ARG NCBI_DATASETS_COMMIT=719e1c231c9c61629bb9870800525bec9dc13714
-ARG NCBI_DATASETS_AMD64_SHA256=47291ece030d58e56892fd780092a8dc4c6e8380d1977ce42b32d66ade42f9cf
-ARG NCBI_DATASETS_ARM64_SHA256=ac14d60a8d87baf5cef0fb0ddb5798944ccca581644d2ba749c9295f167ad494
+ARG NCBI_DATASETS_VERSION=18.39.0
+ARG NCBI_DATASETS_COMMIT=488962028aab2a1bab244dd35def300783cebf69
+ARG NCBI_DATASETS_AMD64_SHA256=2fe85fd3d0b5651357e3e6328d8d6abe8c82ea0ffaea331b703f56fe050f7297
+ARG NCBI_DATASETS_ARM64_SHA256=f3c3dcc87652097027d11c726a02abfe556423a2ab8683e924784a98d271f80b
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 基础镜像 digest 不固定活动 Debian APT 仓库；包版本/CA 集合可能变化或下架。
+# 失败先区分网络/TLS、索引和 404，核对官方包版本与架构；旧材料只接受原身份可信副本。
+# 采用新包须重新核对许可并重建/离线 smoke/真实 wrapper 验证，已发布身份走新后继。
 RUN set -eux; \
     apt-get -o Acquire::Retries=3 update; \
     apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
@@ -20,6 +23,9 @@ RUN set -eux; \
 
 COPY docker/collect-notices.py docker/notices.lock.json /tmp/notice-input/
 COPY docker/public-source/ /tmp/notice-input/public-source/
+# collect-notices.py 按 notices.lock.json 获取固定许可/源码；URL 固定不保证长期可得。
+# SHA256/go.sum 不符应拒绝，先查截断/错误页与官方来源；勿盲目重算哈希或删校验。
+# 恢复只用匹配原 SHA256 的可信材料；改参考版本需重审义务、重生审查记录并完整验收。
 RUN set -eux; \
     python3 /tmp/notice-input/collect-notices.py \
       --lock /tmp/notice-input/notices.lock.json \
@@ -32,6 +38,9 @@ RUN set -eux; \
 
 WORKDIR /tmp/build
 
+# v${NCBI_DATASETS_VERSION} 官方资产按双架构 SHA256 固定，tag/URL 仍可能下架或被替换。
+# 下载异常先核对 release、架构、大小和 API digest；旧材料仅接受相同哈希的可信副本。
+# 新字节属于更新，不是原样恢复；核实来源/许可后推进身份，重建双平台和三 backend 验证。
 RUN set -eux; \
     case "${TARGETARCH}" in \
       amd64) \
@@ -102,7 +111,7 @@ RUN set -eux; \
     test -n "${BUILDARCH}"; \
     test -n "${TARGETARCH}"; \
     if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
-      datasets --version 2>&1 | grep -Fx "datasets version: 18.38.0" >/dev/null; \
+      datasets --version 2>&1 | grep -Fx "datasets version: 18.39.0" >/dev/null; \
       dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
       datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
       dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \
