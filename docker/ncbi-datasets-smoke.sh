@@ -102,6 +102,29 @@ run_excel() {
   rm -rf "$tmp"
 }
 
+run_taxonomy() {
+  new_tmp
+  printf '%s\n' '{"query":["424242"],"taxonomy":{"taxId":424242,"rank":"SPECIES","currentScientificName":{"name":"TAFFISH synthetic taxon"}}}' > "$tmp/taxonomy_report.jsonl"
+  dataformat tsv taxonomy --force --inputfile "$tmp/taxonomy_report.jsonl" \
+    --fields tax-id,tax-name,rank > "$tmp/report.tsv" 2> "$tmp/taxonomy.log"
+  test "$(sed -n '1p' "$tmp/report.tsv")" = "$(printf 'Taxid\tTax name\tRank')"
+  test "$(sed -n '2p' "$tmp/report.tsv")" = "$(printf '424242\tTAFFISH synthetic taxon\tSPECIES')"
+  test "$(wc -l < "$tmp/report.tsv" | tr -d ' ')" = 2
+  dataformat tsv taxonomy --force --inputfile "$tmp/taxonomy_report.jsonl" \
+    --fields rank,tax-name,tax-id --elide-header > "$tmp/reordered.tsv" 2> "$tmp/reordered.log"
+  test "$(cat "$tmp/reordered.tsv")" = "$(printf 'SPECIES\tTAFFISH synthetic taxon\t424242')"
+  dataformat tsv taxonomy --force --inputfile "$tmp/taxonomy_report.jsonl" \
+    --fields 'tax-*' > "$tmp/wildcard.tsv" 2> "$tmp/wildcard.log"
+  grep -F 'TAFFISH synthetic taxon' "$tmp/wildcard.tsv" >/dev/null
+  if dataformat tsv taxonomy --force --inputfile "$tmp/taxonomy_report.jsonl" \
+      --fields not-a-real-field > "$tmp/invalid.tsv" 2> "$tmp/invalid-field.log"; then
+    echo 'invalid taxonomy field unexpectedly accepted' >&2
+    exit 1
+  fi
+  grep -F 'field(s) [not-a-real-field] not recognized.' "$tmp/invalid-field.log" >/dev/null
+  rm -rf "$tmp"
+}
+
 run_invalid() {
   new_tmp
   printf '%s\n' '{invalid json}' > "$tmp/bad.jsonl"
@@ -126,6 +149,9 @@ case "$mode" in
   sequence)
     run_sequence
     ;;
+  taxonomy)
+    run_taxonomy
+    ;;
   invalid)
     run_invalid
     ;;
@@ -136,6 +162,7 @@ case "$mode" in
   all)
     run_tsv
     run_sequence
+    run_taxonomy
     run_excel
     run_invalid
     ;;

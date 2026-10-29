@@ -1,0 +1,2 @@
+<taf-app:container:ghcr.io/taffish/ncbi-datasets:18.40.0-r1>
+datasets ::*ARGV*::

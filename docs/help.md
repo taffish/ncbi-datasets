@@ -1,4 +1,4 @@
-ncbi-datasets 18.39.0-r1
+ncbi-datasets 18.40.0-r1
 
 Purpose:
   Query NCBI metadata with datasets; convert existing JSON Lines or package
@@ -12,6 +12,8 @@ Common tasks:
   taf-ncbi-datasets dataformat excel genome --package ncbi_dataset.zip --outputfile report.xlsx
   taf-ncbi-datasets dataformat tsv sequence --inputfile sequence_data_report.jsonl --template summary --force
   taf-ncbi-datasets dataformat tsv sequence --list-templates
+  taf-ncbi-datasets datasets summary taxonomy taxon 9606 --as-json-lines > taxonomy.jsonl
+  taf-ncbi-datasets dataformat tsv taxonomy --inputfile taxonomy.jsonl --fields tax-id,tax-name,rank --force
 
 Inputs and outputs:
   Query inputs: an accession/identifier or an upstream-supported identifier list.
@@ -20,6 +22,7 @@ Inputs and outputs:
   --pretty is for display; omit it from --as-json-lines input for dataformat.
   Large queries should avoid --pretty because upstream buffers the response.
   For spaces use literal inner quotes: --inputfile "'input with spaces.jsonl'".
+  For wildcard taxonomy fields use --fields "'tax-*'"; see dataformat tsv taxonomy --help.
   Work in a writable directory. Current-directory files are bound by the wrapper;
   paths elsewhere require an explicit bind. Use new output names to avoid overwrite.
 

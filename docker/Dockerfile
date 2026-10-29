@@ -2,10 +2,10 @@ FROM debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe6
 
 ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.39.0
-ARG NCBI_DATASETS_COMMIT=488962028aab2a1bab244dd35def300783cebf69
-ARG NCBI_DATASETS_AMD64_SHA256=2fe85fd3d0b5651357e3e6328d8d6abe8c82ea0ffaea331b703f56fe050f7297
-ARG NCBI_DATASETS_ARM64_SHA256=f3c3dcc87652097027d11c726a02abfe556423a2ab8683e924784a98d271f80b
+ARG NCBI_DATASETS_VERSION=18.40.0
+ARG NCBI_DATASETS_COMMIT=813fda028eea99c5e5aae0feab76d975c6ad24cc
+ARG NCBI_DATASETS_AMD64_SHA256=f0904244aa147dd372699281c4da428335288447e480ada42c118c18e1ffa8aa
+ARG NCBI_DATASETS_ARM64_SHA256=23d4c2a64c3a745fe68df59377da3802798d6513ebcd9a6c3fb411b5f78cf179
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -99,6 +99,7 @@ COPY docker/ncbi-datasets-smoke.sh /opt/ncbi-datasets/share/testdata/ncbi-datase
 COPY docker/ncbi-datasets-pretty-smoke.sh /opt/ncbi-datasets/share/testdata/ncbi-datasets-pretty-smoke.sh
 COPY docker/ncbi-datasets-json-compact.awk /opt/ncbi-datasets/share/testdata/ncbi-datasets-json-compact.awk
 COPY docker/check-notices.sh /opt/ncbi-datasets/share/testdata/check-notices.sh
+COPY docker/check-runtime.sh /opt/ncbi-datasets/share/testdata/check-runtime.sh
 
 RUN set -eux; \
     mkdir -p /usr/local/bin; \
@@ -107,12 +108,13 @@ RUN set -eux; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/ncbi-datasets-pretty-smoke.sh; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/check-notices.sh; \
+    chmod 0755 /opt/ncbi-datasets/share/testdata/check-runtime.sh; \
+    chmod 0755 /opt /opt/ncbi-datasets /opt/ncbi-datasets/bin /opt/ncbi-datasets/share /opt/ncbi-datasets/share/testdata /opt/ncbi-datasets/share/doc /opt/ncbi-datasets/share/doc/ncbi-datasets /opt/ncbi-datasets/share/licenses /opt/ncbi-datasets/share/licenses/ncbi-datasets; \
     /opt/ncbi-datasets/share/testdata/check-notices.sh; \
     test -n "${BUILDARCH}"; \
     test -n "${TARGETARCH}"; \
     if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
-      datasets --version 2>&1 | grep -Fx "datasets version: 18.39.0" >/dev/null; \
-      dataformat version 2>&1 | grep -Fx "undefined" >/dev/null; \
+      /opt/ncbi-datasets/share/testdata/check-runtime.sh; \
       datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
       dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \
       /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh buildtime; \
