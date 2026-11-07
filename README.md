@@ -6,7 +6,7 @@ for TAFFISH. It fixes the client binaries, not the contents of NCBI's live servi
 Package identity:
 
 - command: `taf-ncbi-datasets`; kind: `tool`
-- version: `18.40.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.40.0-r1`
+- version: `18.41.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.41.0-r1`
 - default command: `datasets`; companion: `dataformat`
 - native platforms: `linux/amd64`, `linux/arm64`
 - packaging license: Apache-2.0; NCBI code: Public Domain / United States Government Work
@@ -16,11 +16,7 @@ Package identity:
 The two unmodified official Linux binaries query/download selected NCBI data
 packages, rehydrate dehydrated packages, and format local metadata as TSV or
 XLSX. `dataformat catalog` also inspects package inventories.
-[Upstream v18.40.0](https://github.com/ncbi/datasets/releases/tag/v18.40.0) is a
-release adding field selection to `dataformat tsv taxonomy` and expanding common
-name recognition in taxonomy autosuggest. Its public source diff updates the
-OpenAPI schemas; existing `summary --pretty` behavior is retained. No new executable
-or local model/database was added. This app keeps both official binaries unmodified.
+[Upstream v18.41.0](https://github.com/ncbi/datasets/releases/tag/v18.41.0) fixes the formatter’s version stamp: both `dataformat version` and `dataformat --version` print `18.41.0` (older versions could print `undefined`). Taxonomy names reports and service-side suggestions now account for in-part names. The published source diff changes the two OpenAPI descriptions. This package distributes the two official executables without modification.
 
 ## Scope and Container Contents
 
@@ -39,7 +35,7 @@ No GPU, service port or display setup is required.
 ## Install and Use
 
 Install with the normal TAFFISH Hub command after this candidate is published.
-The pinned install command is `taf install ncbi-datasets 18.40.0-r1`.
+The pinned install command is `taf install ncbi-datasets 18.41.0-r1`.
 Maintainers can run `taf check` and `taf build` in the source checkout;
 installed users run the wrapper directly:
 
@@ -59,6 +55,8 @@ Keep machine-readable `--as-json-lines` output **without** `--pretty` for
 `dataformat`: pretty printing expands records across lines. The upstream pretty
 implementation buffers the response, so prefer ordinary output for large queries.
 This is upstream behavior; the wrapper does not transform the data.
+
+To request taxonomy names, run `taf-ncbi-datasets datasets download taxonomy taxon 9606 --include names --filename names.zip`. Inspect the `names_report.jsonl` in the completed package. The names descriptor can include `inPartNames` where NCBI supplies them; do not assume every taxon has any. This is not a new TSV `--fields` selector. Search suggestions and record contents remain properties of the live NCBI service.
 
 For existing packages use `--package ncbi_dataset.zip` instead of `--inputfile`.
 With the current TAFFISH shell argument expansion, paths containing spaces need
@@ -151,21 +149,17 @@ dummy value; no real credential is required or recorded.
 
 ## Reproducibility and Build Design
 
-- tag: `v18.40.0`; commit: `813fda028eea99c5e5aae0feab76d975c6ad24cc`
-- amd64 archive SHA256: `f0904244aa147dd372699281c4da428335288447e480ada42c118c18e1ffa8aa`
-- arm64 archive SHA256: `23d4c2a64c3a745fe68df59377da3802798d6513ebcd9a6c3fb411b5f78cf179`
+- tag: `v18.41.0`; commit: `9d66d2bcb321612e0e03fc1b43cc18f5e75137eb`
+- amd64 archive SHA256: `148a7a98c445d2e6eaac2f39d609d4d8fc8cc153290f9a96728e09f79a131051`
+- arm64 archive SHA256: `7264193235387f0a1bc1b188909cf0ba6e2a1eafe29bf71d34aa7fe179555a36`
 - BusyBox `1.37.0-musl` final base and Debian builder are digest-pinned in Dockerfile
 - context: app root, `docker build -f docker/Dockerfile .`, matching canonical Action
 
 Per-platform provenance: `/opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt`.
 Official binaries stay unmodified. Build-only tools and downloads do not enter
-the final image. Native build self-checks use exact identity, ordinary help and
-tiny non-rendering TSV transformations. Cross-builds check files/provenance
-without executing target binaries; native runtime evidence is a separate gate.
+the final image. Native build self-checks cover stable executable identity and the integrity of the fixed distribution materials. The full help, formatting, network and read-only tests run after the build. Cross-build layers do not execute target binaries. Provenance records the official ZIP digest for each architecture.
 
-`datasets --version` reports exactly `datasets version: 18.40.0`. Official
-`dataformat version` still prints `undefined`; its identity is tied to the same
-verified archive. The wrapper does not manufacture a version string.
+`datasets --version` returns `datasets version: 18.41.0`. Both official `dataformat` version forms return `18.41.0`; the wrapper neither rewrites nor manufactures these strings.
 
 ## Testing and Candidate Boundary
 
@@ -194,28 +188,7 @@ Any subsequently identified component or concrete unmet obligation requires
 renewed review. The unlicensed `bou.ke/monkey` source is excluded: it is a public
 module declaration without NCBI imports or observed binary linkage.
 
-This candidate was rebuilt from the app-root context on native Linux amd64 and
-arm64. Docker/Podman normal and read-only-root probes passed on both platforms;
-the same amd64 OCI was converted to a real read-only Apptainer SIF and passed
-clean/contained offline probes. This round actually ran all three native amd64
-backends on the maintainer's xjp server, and Docker/Podman on native ARM64.
-All 234 exact probes and 120 real-wrapper checks passed, including ordinary-user
-outputs, read-only shared inputs, taxonomy field selection and invalid inputs.
-Additional coverage includes 36 output/failure-injection cases, 33 notice-integrity
-checks, three original-exit diagnostics, five runtime permission controls,
-10 version-gate controls, 10 JSON-compaction tests, 22 collector unit tests and
-six transport-identity controls. Internal fault variants are tested at the logic
-and representative runtime layers, not duplicated mechanically in every backend.
-The final images are 118,639,038 bytes (amd64) and 117,584,516 bytes (arm64).
-
-Small normal-network metadata queries passed through all three amd64 wrappers
-without an API key. ARM64 Apptainer was not separately validated; it adds no
-known architecture/backend-specific mount, device or service coupling here.
-Production sequence downloads, real administrator/site deployment, complete
-scientific workflows and future live-service availability are not proved by
-these checks. Local native builds also do not guarantee a future GitHub runner's
-network availability. Candidate receipts are in the maintainer handoff; these
-are new 18.40.0-r1 results, not inherited 18.39.0-r1 passes.
+This package’s release notes record the measured image sizes, offline and real-wrapper checks. Small online metadata requests exercise connectivity at validation time; they do not certify future service availability, production data, or the scientific accuracy of individual NCBI records. View downloads as user-selected artifacts and retain their provenance.
 
 About 73 MiB of retained notice/source material includes original Go and library
 archives. These are intentional distribution materials, not disposable download

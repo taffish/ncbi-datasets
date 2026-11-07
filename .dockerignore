@@ -1,0 +1,8 @@
+.git
+.github
+target
+release.md
+.DS_Store
+**/.DS_Store
+**/._*
+**/__pycache__

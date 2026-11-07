@@ -1,4 +1,4 @@
-ncbi-datasets 18.40.0-r1
+ncbi-datasets 18.41.0-r1
 
 Purpose:
   Query NCBI metadata with datasets; convert existing JSON Lines or package
@@ -13,6 +13,7 @@ Common tasks:
   taf-ncbi-datasets dataformat tsv sequence --inputfile sequence_data_report.jsonl --template summary --force
   taf-ncbi-datasets dataformat tsv sequence --list-templates
   taf-ncbi-datasets datasets summary taxonomy taxon 9606 --as-json-lines > taxonomy.jsonl
+  taf-ncbi-datasets datasets download taxonomy taxon 9606 --include names --filename names.zip
   taf-ncbi-datasets dataformat tsv taxonomy --inputfile taxonomy.jsonl --fields tax-id,tax-name,rank --force
 
 Inputs and outputs:
@@ -67,7 +68,8 @@ Immediate notes:
   project inputs, not a snapshot of all NCBI records. Save query/date/checksums.
   A dehydrated package is incomplete: unpack it into a new writable directory,
   then use datasets rehydrate --directory DIR with enough disk space and HTTPS.
-  dataformat version prints "undefined" upstream; use datasets --version for identity.
+  Check the client with dataformat --version (or dataformat version).
+  In-part names, where present, are in names_report.jsonl, not a TSV field.
 
 More help:
   taf-ncbi-datasets datasets download --help

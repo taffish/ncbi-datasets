@@ -18,6 +18,7 @@ check() {
     exit 1
   fi
 }
-check 'datasets version: 18.40.0' datasets --version
-check 'undefined' dataformat version
-printf '%s\n' '[OK] runtime identity: datasets 18.40.0; official dataformat undefined'
+check 'datasets version: 18.41.0' datasets --version
+check '18.41.0' dataformat version
+check '18.41.0' dataformat --version
+printf '%s\n' '[OK] runtime identity: datasets 18.41.0; dataformat version/--version 18.41.0'

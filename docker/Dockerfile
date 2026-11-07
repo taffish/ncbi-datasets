@@ -2,23 +2,31 @@ FROM debian:bookworm-slim@sha256:88200866dfff7ea7f5cbcb6ec7c8a701889efe6fe859fe6
 
 ARG BUILDARCH
 ARG TARGETARCH
-ARG NCBI_DATASETS_VERSION=18.40.0
-ARG NCBI_DATASETS_COMMIT=813fda028eea99c5e5aae0feab76d975c6ad24cc
-ARG NCBI_DATASETS_AMD64_SHA256=f0904244aa147dd372699281c4da428335288447e480ada42c118c18e1ffa8aa
-ARG NCBI_DATASETS_ARM64_SHA256=23d4c2a64c3a745fe68df59377da3802798d6513ebcd9a6c3fb411b5f78cf179
+ARG NCBI_DATASETS_VERSION=18.41.0
+ARG NCBI_DATASETS_COMMIT=9d66d2bcb321612e0e03fc1b43cc18f5e75137eb
+ARG NCBI_DATASETS_AMD64_SHA256=148a7a98c445d2e6eaac2f39d609d4d8fc8cc153290f9a96728e09f79a131051
+ARG NCBI_DATASETS_ARM64_SHA256=7264193235387f0a1bc1b188909cf0ba6e2a1eafe29bf71d34aa7fe179555a36
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 基础镜像 digest 不固定活动 Debian APT 仓库；包版本/CA 集合可能变化或下架。
 # 失败先区分网络/TLS、索引和 404，核对官方包版本与架构；旧材料只接受原身份可信副本。
 # 采用新包须重新核对许可并重建/离线 smoke/真实 wrapper 验证，已发布身份走新后继。
+# Bootstrap CA roots using Debian's signed repository; then use HTTPS for build tools.
+# A bounded retry covers temporary mirror/proxy failures, never an unsigned index.
 RUN set -eux; \
-    apt-get -o Acquire::Retries=3 update; \
-    apt-get -o Acquire::Retries=3 install -y --no-install-recommends \
-        ca-certificates \
-        curl \
-        python3 \
-        unzip; \
+    apt_checked() { \
+      attempt=1; \
+      while :; do \
+        if apt-get -o Acquire::Retries=3 -o APT::Update::Error-Mode=any update && \
+           apt-get -o Acquire::Retries=3 install -y --no-install-recommends "$@"; then return 0; fi; \
+        if [ "$attempt" -ge 3 ]; then return 1; fi; \
+        sleep "$attempt"; attempt=$((attempt + 1)); \
+      done; \
+    }; \
+    apt_checked ca-certificates; \
+    sed -i 's@http://deb.debian.org/@https://deb.debian.org/@g' /etc/apt/sources.list.d/debian.sources; \
+    apt_checked curl python3 unzip; \
     rm -rf /var/lib/apt/lists/*
 
 COPY docker/collect-notices.py docker/notices.lock.json /tmp/notice-input/
@@ -78,7 +86,7 @@ RUN set -eux; \
       printf "build_arch=%s\n" "${BUILDARCH}"; \
       printf "target_arch=%s\n" "${TARGETARCH}"; \
       printf "packaged_commands=datasets,dataformat\n"; \
-      printf "dataformat_version_output=undefined (upstream release behavior)\n"; \
+      printf "dataformat_version_output=%s\n" "${NCBI_DATASETS_VERSION}"; \
       printf "online_service_required=datasets summary/download/rehydrate\n"; \
       printf "offline_local_processing=dataformat tsv/excel/catalog\n"; \
     } > /opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt; \
@@ -111,13 +119,8 @@ RUN set -eux; \
     chmod 0755 /opt/ncbi-datasets/share/testdata/check-runtime.sh; \
     chmod 0755 /opt /opt/ncbi-datasets /opt/ncbi-datasets/bin /opt/ncbi-datasets/share /opt/ncbi-datasets/share/testdata /opt/ncbi-datasets/share/doc /opt/ncbi-datasets/share/doc/ncbi-datasets /opt/ncbi-datasets/share/licenses /opt/ncbi-datasets/share/licenses/ncbi-datasets; \
     /opt/ncbi-datasets/share/testdata/check-notices.sh; \
-    test -n "${BUILDARCH}"; \
-    test -n "${TARGETARCH}"; \
-    if [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
+    if [ -n "${BUILDARCH:-}" ] && [ "${BUILDARCH}" = "${TARGETARCH}" ]; then \
       /opt/ncbi-datasets/share/testdata/check-runtime.sh; \
-      datasets --help 2>&1 | grep -F "Data Retrieval Commands" >/dev/null; \
-      dataformat --help 2>&1 | grep -F "Formatting Commands" >/dev/null; \
-      /opt/ncbi-datasets/share/testdata/ncbi-datasets-smoke.sh buildtime; \
     else \
       test -x /opt/ncbi-datasets/bin/datasets; \
       test -x /opt/ncbi-datasets/bin/dataformat; \
@@ -127,7 +130,7 @@ RUN set -eux; \
     test -s /etc/ssl/certs/ca-certificates.crt; \
     test -s /opt/ncbi-datasets/share/licenses/ncbi-datasets/LICENSE.md
 
-WORKDIR /root
+WORKDIR /work
 
 ENV TAFFISH_ENV=TAFFISH
-ENV TAFFISH_NAME=ncbi-datasets
+ENV TAFFISH_NAME=ncbi-datasets TAFFISH_VERSION=18.41.0 TAFFISH_RELEASE=1
