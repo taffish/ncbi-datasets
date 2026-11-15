@@ -6,7 +6,7 @@ for TAFFISH. It fixes the client binaries, not the contents of NCBI's live servi
 Package identity:
 
 - command: `taf-ncbi-datasets`; kind: `tool`
-- version: `18.41.0-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.41.0-r1`
+- version: `18.41.1-r1`; image: `ghcr.io/taffish/ncbi-datasets:18.41.1-r1`
 - default command: `datasets`; companion: `dataformat`
 - native platforms: `linux/amd64`, `linux/arm64`
 - packaging license: Apache-2.0; NCBI code: Public Domain / United States Government Work
@@ -16,7 +16,13 @@ Package identity:
 The two unmodified official Linux binaries query/download selected NCBI data
 packages, rehydrate dehydrated packages, and format local metadata as TSV or
 XLSX. `dataformat catalog` also inspects package inventories.
-[Upstream v18.41.0](https://github.com/ncbi/datasets/releases/tag/v18.41.0) fixes the formatter’s version stamp: both `dataformat version` and `dataformat --version` print `18.41.0` (older versions could print `undefined`). Taxonomy names reports and service-side suggestions now account for in-part names. The published source diff changes the two OpenAPI descriptions. This package distributes the two official executables without modification.
+[Upstream v18.41.1](https://github.com/ncbi/datasets/releases/tag/v18.41.1) describes
+internal performance and reliability improvements. Its public source tag points
+to the same commit as v18.41.0; the official release binaries have new hashes.
+This package distributes those executables without modification. Both
+`dataformat version` and `dataformat --version` identify this release as `18.41.1`.
+Existing taxonomy names reports can include in-part names when supplied by NCBI;
+this is not a new feature introduced by this patch release.
 
 ## Scope and Container Contents
 
@@ -35,7 +41,7 @@ No GPU, service port or display setup is required.
 ## Install and Use
 
 Install with the normal TAFFISH Hub command after this candidate is published.
-The pinned install command is `taf install ncbi-datasets 18.41.0-r1`.
+The pinned install command is `taf install ncbi-datasets 18.41.1-r1`.
 Maintainers can run `taf check` and `taf build` in the source checkout;
 installed users run the wrapper directly:
 
@@ -149,9 +155,9 @@ dummy value; no real credential is required or recorded.
 
 ## Reproducibility and Build Design
 
-- tag: `v18.41.0`; commit: `9d66d2bcb321612e0e03fc1b43cc18f5e75137eb`
-- amd64 archive SHA256: `148a7a98c445d2e6eaac2f39d609d4d8fc8cc153290f9a96728e09f79a131051`
-- arm64 archive SHA256: `7264193235387f0a1bc1b188909cf0ba6e2a1eafe29bf71d34aa7fe179555a36`
+- tag: `v18.41.1`; commit: `9d66d2bcb321612e0e03fc1b43cc18f5e75137eb`
+- amd64 archive SHA256: `e634935226826ea22e0b938e68752ab5cf1005f252aadfb43e9323d26a7119e6`
+- arm64 archive SHA256: `b763e61ceefb0e5703ef91d448befa68e441cb919feded9d85c03f4343bcd8a7`
 - BusyBox `1.37.0-musl` final base and Debian builder are digest-pinned in Dockerfile
 - context: app root, `docker build -f docker/Dockerfile .`, matching canonical Action
 
@@ -159,7 +165,7 @@ Per-platform provenance: `/opt/ncbi-datasets/share/doc/ncbi-datasets/source.txt`
 Official binaries stay unmodified. Build-only tools and downloads do not enter
 the final image. Native build self-checks cover stable executable identity and the integrity of the fixed distribution materials. The full help, formatting, network and read-only tests run after the build. Cross-build layers do not execute target binaries. Provenance records the official ZIP digest for each architecture.
 
-`datasets --version` returns `datasets version: 18.41.0`. Both official `dataformat` version forms return `18.41.0`; the wrapper neither rewrites nor manufactures these strings.
+`datasets --version` returns `datasets version: 18.41.1`. Both official `dataformat` version forms return `18.41.1`; the wrapper neither rewrites nor manufactures these strings.
 
 ## Testing and Candidate Boundary
 

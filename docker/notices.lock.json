@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "ncbi_version": "18.41.0",
+  "ncbi_version": "18.41.1",
   "ncbi_commit": "9d66d2bcb321612e0e03fc1b43cc18f5e75137eb",
   "coverage": "audited-provider-notices-and-required-source-materials",
   "public_go_mod_sha256": "d95b4216d222e61ee185b857864850bb95f45097240f0e474d111a83c9d87364",
@@ -16,7 +16,7 @@
       "notices": [
         "bou.ke/monkey@v1.0.2/LICENSE.md"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/antihax/optional",
@@ -28,7 +28,7 @@
       "notices": [
         "github.com/antihax/optional@v1.0.0/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/araddon/dateparse",
@@ -40,7 +40,7 @@
       "notices": [
         "github.com/araddon/dateparse@v0.0.0-20210429162001-6b43995a97de/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/docker/go-units",
@@ -52,7 +52,7 @@
       "notices": [
         "github.com/docker/go-units@v0.5.0/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/gosuri/uiprogress",
@@ -64,7 +64,7 @@
       "notices": [
         "github.com/gosuri/uiprogress@v0.0.1/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/hashicorp/go-cleanhttp",
@@ -76,7 +76,7 @@
       "notices": [
         "github.com/hashicorp/go-cleanhttp@v0.5.2/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/hashicorp/go-retryablehttp",
@@ -88,7 +88,7 @@
       "notices": [
         "github.com/hashicorp/go-retryablehttp@v0.7.7/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/spf13/afero",
@@ -100,7 +100,7 @@
       "notices": [
         "github.com/spf13/afero@v1.11.0/LICENSE.txt"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/spf13/cobra",
@@ -112,7 +112,7 @@
       "notices": [
         "github.com/spf13/cobra@v1.8.1/LICENSE.txt"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/spf13/pflag",
@@ -124,7 +124,7 @@
       "notices": [
         "github.com/spf13/pflag@v1.0.5/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/stretchr/testify",
@@ -136,7 +136,7 @@
       "notices": [
         "github.com/stretchr/testify@v1.9.0/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/thediveo/enumflag/v2",
@@ -148,7 +148,7 @@
       "notices": [
         "github.com/thediveo/enumflag/v2@v2.0.7/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "gitlab.com/metakeule/fmtdate",
@@ -160,7 +160,7 @@
       "notices": [
         "gitlab.com/metakeule/fmtdate@v1.2.2/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "golang.org/x/exp",
@@ -173,7 +173,7 @@
         "golang.org/x/exp@v0.0.0-20250103183323-7d7fa50e5329/LICENSE",
         "golang.org/x/exp@v0.0.0-20250103183323-7d7fa50e5329/PATENTS"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "golang.org/x/text",
@@ -186,7 +186,7 @@
         "golang.org/x/text@v0.22.0/LICENSE",
         "golang.org/x/text@v0.22.0/PATENTS"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/davecgh/go-spew",
@@ -198,7 +198,7 @@
       "notices": [
         "github.com/davecgh/go-spew@v1.1.1/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/gosuri/uilive",
@@ -210,7 +210,7 @@
       "notices": [
         "github.com/gosuri/uilive@v0.0.3/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/inconshreveable/mousetrap",
@@ -222,7 +222,7 @@
       "notices": [
         "github.com/inconshreveable/mousetrap@v1.1.0/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/mattn/go-isatty",
@@ -234,7 +234,7 @@
       "notices": [
         "github.com/mattn/go-isatty@v0.0.20/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "github.com/pmezard/go-difflib",
@@ -246,7 +246,7 @@
       "notices": [
         "github.com/pmezard/go-difflib@v1.0.0/LICENSE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "golang.org/x/sys",
@@ -259,7 +259,7 @@
         "golang.org/x/sys@v0.28.0/LICENSE",
         "golang.org/x/sys@v0.28.0/PATENTS"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     },
     {
       "module": "gopkg.in/yaml.v3",
@@ -272,7 +272,7 @@
         "gopkg.in/yaml.v3@v3.0.1/LICENSE",
         "gopkg.in/yaml.v3@v3.0.1/NOTICE"
       ],
-      "basis": "NCBI v18.41.0 public datasets go.mod; not a dataformat version claim"
+      "basis": "NCBI v18.41.1 public datasets go.mod; not a dataformat version claim"
     }
   ],
   "go": {
@@ -918,7 +918,7 @@
     }
   ],
   "review_files": {
-    "notice-review.md": "69056194759c0df57458abab8dbdafab7ab2c79910318a54c0dce5da0ca09fef",
-    "binary-providers.json": "60c846367ee88cd26efccc94550d6d93f973b4571e3b3668ff83f63118310691"
+    "notice-review.md": "4b43ec37cbcbeb3c6629cf78d51c995d82229aa0a87a14d0d320d4eee9d36b81",
+    "binary-providers.json": "91e4ab628454df1354b1472ca5ea8fc80779e8b2b9467dbb7f62475b4e53d418"
   }
 }

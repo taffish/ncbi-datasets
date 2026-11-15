@@ -4,7 +4,7 @@ set -eu
 trap 'status=$?; if [ "$status" -ne 0 ]; then printf "[FAIL] notice-integrity exit=%s\n" "$status" >&2; fi' 0
 root=${1:-/opt/ncbi-datasets/share/licenses/third-party}
 cd "$root"
-printf '%s\n' 'b055adf43aa19c385d47d27a52fa5374e13b89a50cf383b1c77e9141626b33ca  SHA256SUMS' | sha256sum -c - >/dev/null
+printf '%s\n' '3d8c39259e168ae3d144c13760da958230476a65608862f732fd8da1d02a2531  SHA256SUMS' | sha256sum -c - >/dev/null
 sha256sum -c SHA256SUMS >/dev/null
 test "$(find . -type f | wc -l)" -eq 215
 test -z "$(find . -type l)"
